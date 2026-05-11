@@ -1,26 +1,54 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-navy: #0d1b2a;
+  --color-navy-mid: #1a2e44;
+  --color-navy-dark: #0a1520;
+  --color-orange: #e84e0f;
+  --color-orange-hover: #c43d0a;
+  --color-gray-bg: #f0f2f4;
+  --color-gray-card: #ffffff;
+  --color-gray-border: #b8c0c8;
+  --color-text-primary: #0d1b2a;
+  --color-text-secondary: #4a6070;
+  --color-text-muted: #7a8a99;
+  --color-text-nav: #8899aa;
+  --color-text-on-dark: #8faabb;
+  --color-text-on-dark-muted: #5a7a8a;
+  --color-text-subtle: #6b7a8a;
+  --color-text-categoria-sub: #6a8090;
+  --color-text-banner-sub: #6a8090;
+  --color-text-hero-sub: #6a8090;
+  --color-buscador-separator: #3a5a6a;
+  --color-footer-desc: #7a9aaa;
+  --color-footer-col-link: #6a8090;
+  --color-footer-legal: #5a7080;
+  --color-navy-surface: #112233;
+  --color-navy-border: #1e3a55;
+  --color-navy-divider: #2a4a64;
+  --color-navy-strong-border: #1e3044;
+  --color-info-text: #3a5568;
+  --color-logo-muted: #8899aa;
+  --color-orange-12: rgba(232, 78, 15, 0.12);
+  --color-footer-border: #1a2a3a;
+  --color-footer-link: #7a9aaa;
+  --color-footer-muted: #243040;
+  --color-footer-hover-bg: #1e3a55;
+  --color-breadcrumb-separator: #2a3a4a;
+  --color-muted-strong: #8899aa;
+  --color-wheel-placeholder: #b8c4ce;
+  --color-surface-soft: #f0f4f7;
+  --color-whatsapp: #25d366;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--color-gray-bg);
+  color: var(--color-text-primary);
 }
