@@ -77,7 +77,7 @@ export default function Buscador() {
             </div>
             <SearchButton
               onClick={() =>
-                router.push(`/catalogo?ancho=${ancho}&perfil=${perfil}&rodado=${rodado}`)
+                router.push(`/neumaticos/${ancho}-${perfil}-R${rodado}`)
               }
             />
           </div>

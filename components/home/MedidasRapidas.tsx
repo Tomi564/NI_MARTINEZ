@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SectionTitle from "@/components/shared/SectionTitle";
+import { displayToSlug } from "@/lib/medidas";
 
 const medidas = [
   "175/65 R14","185/60 R14","185/65 R15","195/55 R15","195/65 R15",
@@ -22,7 +23,7 @@ export default function MedidasRapidas() {
           {medidas.map((medida) => (
             <Link
               key={medida}
-              href={`/catalogo?medida=${encodeURIComponent(medida)}`}
+              href={`/neumaticos/${displayToSlug(medida)}`}
               className="rounded-[4px] border border-gray-border bg-white px-4 py-2 text-[12px] font-bold tracking-[0.04em] text-text-primary transition-colors duration-150 hover:border-orange hover:bg-orange hover:text-white"
             >
               {medida}

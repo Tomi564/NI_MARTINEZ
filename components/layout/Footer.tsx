@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import BrandLogo from "@/components/layout/BrandLogo";
 
 type FooterLink = { label: string; href: string };
 
@@ -42,15 +43,9 @@ export default function Footer() {
       <div className="mx-auto max-w-[1280px] px-5 pb-6 pt-10 md:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6 pb-6 border-b border-[var(--color-footer-border)]">
           <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2">
-              <LogoMark />
-              <div className="font-condensed text-[15px] font-black uppercase tracking-[0.04em]">
-                <span className="text-white">NEUMÁTICOS </span>
-                <span className="text-orange">IMPORTADOS</span>
-              </div>
-            </div>
+            <BrandLogo variant="footer" className="mb-3" />
 
-            <p className="mb-4 mt-2 max-w-[180px] text-[11px] leading-[1.6] text-[var(--color-footer-desc)]">
+            <p className="mb-4 max-w-[200px] text-[11px] leading-[1.6] text-[var(--color-footer-desc)]">
               Venta online de neumáticos importados con envío a todo Argentina.
               Originales, certificados y al mejor precio.
             </p>
@@ -135,17 +130,6 @@ function SocialIcon({
     >
       {children}
     </a>
-  );
-}
-
-function LogoMark() {
-  return (
-    <svg width="26" height="24" viewBox="0 0 36 32" fill="none" aria-hidden="true">
-      <polygon points="0,32 0,0 16,0 16,32" fill="var(--color-orange)" />
-      <polygon points="20,0 36,0 36,32 20,32" fill="white" />
-      <polygon points="15,32 21,32 21,0 15,0" fill="var(--color-navy)" />
-      <polygon points="12,32 18,32 24,0 18,0" fill="var(--color-navy)" />
-    </svg>
   );
 }
 

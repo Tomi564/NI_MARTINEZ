@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import BrandLogo from "@/components/layout/BrandLogo";
 
 interface NavLink {
   label: string;
@@ -37,24 +38,6 @@ function linkIsActive(
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-function LogoMark() {
-  return (
-    <svg
-      width="36"
-      height="32"
-      viewBox="0 0 36 32"
-      fill="none"
-      aria-hidden="true"
-      className="shrink-0"
-    >
-      <polygon points="0,32 0,0 16,0 16,32" fill="var(--color-orange)" />
-      <polygon points="20,0 36,0 36,32 20,32" fill="white" />
-      <polygon points="15,32 21,32 21,0 15,0" fill="var(--color-navy)" />
-      <polygon points="12,32 18,32 24,0 18,0" fill="var(--color-navy)" />
-    </svg>
-  );
-}
-
 function NavbarInner() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -79,17 +62,9 @@ function NavbarInner() {
 
   return (
     <>
-      <nav className="mx-auto flex h-[58px] max-w-6xl items-center justify-between gap-4 border-b-[2.5px] border-orange bg-navy px-4">
-        <Link href="/" className="flex min-w-max items-center gap-2">
-          <LogoMark />
-          <span className="leading-none">
-            <span className="block font-condensed text-[19px] font-black uppercase text-white">
-              NEUMÁTICOS
-            </span>
-            <span className="block text-[9px] uppercase tracking-[0.14em] text-[var(--color-text-nav)]">
-              Importados
-            </span>
-          </span>
+      <nav className="mx-auto flex h-[58px] max-w-[1280px] items-center justify-between gap-4 border-b-[2.5px] border-orange bg-navy px-5 md:px-8">
+        <Link href="/" className="flex h-full items-center">
+          <BrandLogo variant="nav" />
         </Link>
 
         <ul className="ml-auto hidden items-center gap-6 md:flex">
@@ -151,11 +126,12 @@ function NavbarInner() {
               className="fixed right-0 top-0 z-50 h-full w-[82%] max-w-sm border-l border-white/10 bg-navy md:hidden"
             >
               <div className="flex h-[58px] items-center justify-between border-b border-white/10 px-4">
-                <Link href="/" className="flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
-                  <LogoMark />
-                  <span className="block font-condensed text-[17px] font-black uppercase text-white">
-                    NEUMÁTICOS
-                  </span>
+                <Link
+                  href="/"
+                  className="flex h-full items-center py-0.5"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <BrandLogo variant="mobile" />
                 </Link>
                 <button
                   type="button"

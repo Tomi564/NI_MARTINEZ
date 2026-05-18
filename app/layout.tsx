@@ -5,7 +5,8 @@ import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import PromoBand from "@/components/layout/PromoBand";
-import WhatsAppButton from "@/components/shared/WhatsAppButton";
+import PromoToast from "@/components/shared/PromoToast";
+import { getMetadataBase } from "@/lib/site";
 
 const saira = Saira({
   subsets: ["latin"],
@@ -19,7 +20,10 @@ const sairaCondensed = Saira_Condensed({
   variable: "--font-saira-condensed",
 });
 
+const metadataBase = getMetadataBase();
+
 export const metadata: Metadata = {
+  ...(metadataBase ? { metadataBase } : {}),
   title: "Neumáticos Importados | Compra Online — Envío a Todo Argentina",
   description:
     "Comprá neumáticos importados online con envío a todo Argentina. Pirelli, Dunlop, Bridgestone, Corven y más. Hasta 12 cuotas sin interés vía Mercado Pago.",
@@ -56,8 +60,8 @@ export default function RootLayout({
           </Suspense>
         </header>
         <main className="w-full">{children}</main>
+        <PromoToast />
         <Footer />
-        <WhatsAppButton />
       </body>
     </html>
   );

@@ -37,7 +37,7 @@ type SectionState = {
 const anchos = ["155","165","175","185","195","205","215","225","235","245","255","265","275"];
 const perfiles = ["40","45","50","55","60","65","70","75","80"];
 const rodados = ["13","14","15","16","17","18","19","20","21","22"];
-const marcas = ["Pirelli","Dunlop","Bridgestone","Goodyear","Corven","Michelin","Continental","Hankook","Maxxis","Fate"];
+const marcas = ["Pirelli","Dunlop","Bridgestone","Goodyear","Corven","Michelin","Continental","Hankook","Maxxis"];
 const tipos = ["Todos","Autos","SUV y 4x4","Comerciales","Motos"];
 
 export default function Filtros({ initialFilters }: { initialFilters: CatalogoSearchParams }) {
@@ -117,7 +117,7 @@ export default function Filtros({ initialFilters }: { initialFilters: CatalogoSe
       <button
         type="button"
         onClick={() => setMobileOpen(true)}
-        className="fixed bottom-24 right-4 z-40 rounded-full bg-navy px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.08em] text-white shadow-lg md:hidden"
+        className="fixed bottom-6 right-4 z-40 rounded-full bg-navy px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.08em] text-white shadow-lg md:hidden"
       >
         Filtros
       </button>

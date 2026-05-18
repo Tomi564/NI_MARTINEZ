@@ -13,7 +13,6 @@ const marcas: Marca[] = [
   { id: "continental", nombre: "Continental", productos: 19 },
   { id: "hankook", nombre: "Hankook", productos: 24 },
   { id: "maxxis", nombre: "Maxxis", productos: 31 },
-  { id: "fate", nombre: "Fate", productos: 16 },
 ];
 
 export default function Marcas() {
