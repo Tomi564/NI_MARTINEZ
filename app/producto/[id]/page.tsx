@@ -162,6 +162,33 @@ export default function ProductoPage({ params }: ProductoPageProps) {
         </div>
       </section>
 
+      {/* Características */}
+      <section className="mx-auto max-w-[1280px] px-5 pb-8 md:px-8">
+        <SectionTitle title="Características " highlight="del producto" />
+        <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
+          <FeatureCard
+            icon={<TractionIcon />}
+            titulo="Tracción Superior"
+            descripcion="Diseño de banda optimizado para máximo agarre en seco y mojado"
+          />
+          <FeatureCard
+            icon={<DurabilityIcon />}
+            titulo="Larga Vida Útil"
+            descripcion="Compuesto de caucho reforzado para mayor kilometraje"
+          />
+          <FeatureCard
+            icon={<ComfortIcon />}
+            titulo="Confort de Marcha"
+            descripcion="Diseño que minimiza el ruido y absorbe las irregularidades del camino"
+          />
+          <FeatureCard
+            icon={<EfficiencyIcon />}
+            titulo="Bajo Consumo"
+            descripcion="Resistencia a la rodadura optimizada para menor consumo de combustible"
+          />
+        </div>
+      </section>
+
       {/* Related */}
       <section className="mx-auto max-w-[1280px] px-5 pb-12 md:px-8 md:pb-16">
         <SectionTitle title="También te puede " highlight="interesar" />
@@ -174,6 +201,26 @@ export default function ProductoPage({ params }: ProductoPageProps) {
         </div>
       </section>
     </div>
+  );
+}
+
+function FeatureCard({
+  icon,
+  titulo,
+  descripcion,
+}: {
+  icon: ReactNode;
+  titulo: string;
+  descripcion: string;
+}) {
+  return (
+    <article className="rounded-[5px] border border-[0.5px] border-gray-border border-t-[3px] border-t-orange bg-white p-4 text-center">
+      <div className="mb-3 flex justify-center text-orange">{icon}</div>
+      <h3 className="mb-1 font-sans text-[13px] font-bold text-text-primary">{titulo}</h3>
+      <p className="font-sans text-[11px] font-normal leading-[1.5] text-text-secondary">
+        {descripcion}
+      </p>
+    </article>
   );
 }
 
@@ -244,6 +291,45 @@ function RefreshIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M4 12a8 8 0 0 1 13.7-5.6L20 9M20 9V5M20 12a8 8 0 0 1-13.7 5.6L4 15M4 15v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function TractionIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="7" stroke="currentColor" strokeWidth="2" />
+      <path d="M12 5v4M12 15v4M5 12h4M15 12h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M7.5 7.5l2.8 2.8M13.7 13.7l2.8 2.8M16.5 7.5l-2.8 2.8M10.3 13.7l-2.8 2.8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function DurabilityIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 3 19 6V12C19 16.4 15.9 20.3 12 21C8.1 20.3 5 16.4 5 12V6L12 3Z" stroke="currentColor" strokeWidth="2" />
+      <path d="M9 12 11 14 15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function ComfortIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M4 14h16l-1-4H6l-2 4Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      <circle cx="7" cy="17" r="1.5" fill="currentColor" />
+      <circle cx="17" cy="17" r="1.5" fill="currentColor" />
+      <path d="M9 10V8a3 3 0 0 1 6 0v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function EfficiencyIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 3C8 8 6 11 6 14a6 6 0 0 0 12 0c0-3-2-6-6-11Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      <path d="M12 14v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }

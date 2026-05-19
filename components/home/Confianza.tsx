@@ -15,9 +15,10 @@ const items: ConfianzaItem[] = [
     icon: <StarIcon />,
   },
   {
-    titulo: "Atención personalizada",
-    texto: "Respondemos por WhatsApp de lunes a sábado de 9 a 20hs. Asesoramiento sin cargo.",
-    icon: <WhatsappIcon />,
+    titulo: "Envío gratis a todo el país",
+    texto:
+      "Despachamos a cualquier provincia de Argentina sin costo adicional. Entrega estimada de 24 a 72hs hábiles según tu zona.",
+    icon: <TruckIcon />,
   },
 ];
 
@@ -65,11 +66,13 @@ function StarIcon() {
   );
 }
 
-function WhatsappIcon() {
+function TruckIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M20 11.5C20 16.2 16.2 20 11.5 20C10.1 20 8.7 19.6 7.5 19L3 20L4 15.5C3.4 14.3 3 12.9 3 11.5C3 6.8 6.8 3 11.5 3C16.2 3 20 6.8 20 11.5Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-      <path d="M9.5 9.5C10 11 11 12 12.5 12.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M3 7h12v8H3V7Z" stroke="currentColor" strokeWidth="2" />
+      <path d="M15 10h4l2 2v3h-6v-5Z" stroke="currentColor" strokeWidth="2" />
+      <circle cx="7" cy="17" r="1.5" fill="currentColor" />
+      <circle cx="17" cy="17" r="1.5" fill="currentColor" />
     </svg>
   );
 }

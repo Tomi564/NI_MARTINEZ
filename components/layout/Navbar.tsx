@@ -16,6 +16,7 @@ const navLinks: NavLink[] = [
   { label: "Catálogo", href: "/catalogo" },
   { label: "Marcas", href: "/marcas" },
   { label: "Envíos", href: "/envios" },
+  { label: "Contacto", href: "/contacto" },
 ];
 
 function linkIsActive(

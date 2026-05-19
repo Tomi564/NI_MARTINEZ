@@ -1,31 +1,8 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
-
-export default function Hero() {
-  return (
-    <section className="w-full bg-[var(--color-navy)] text-white">
-      <svg
-        aria-hidden="true"
-        role="presentation"
-        width="420"
-        height="420"
-        viewBox="0 0 340 340"
-        className="pointer-events-none absolute right-0 top-0 hidden opacity-[0.04] md:block"
-      >
-        <circle cx="170" cy="170" r="140" stroke="white" strokeWidth="10" fill="none" />
-        <circle cx="170" cy="170" r="100" stroke="white" strokeWidth="7" fill="none" />
-        <circle cx="170" cy="170" r="55" stroke="white" strokeWidth="5" fill="none" />
-        <circle cx="170" cy="170" r="20" fill="white" />
-      </svg>
-
-      <div className="relative mx-auto max-w-[1280px] px-6 pb-10 pt-10 md:px-8 md:pb-[52px] md:pt-[56px]">
-        <HeroContent />
-      </div>
-    </section>
-  );
-}
 
 const containerVariants: Variants = {
   hidden: {},
@@ -37,58 +14,75 @@ const itemVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.38, ease: "easeOut" } },
 };
 
-function HeroContent() {
+export default function Hero() {
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      style={{ maxWidth: 560 }}
-      className="relative z-[1]"
-    >
-      <motion.p
-        variants={itemVariants}
-        className="mb-3 text-[11px] font-bold uppercase tracking-[0.16em] text-orange"
-      >
-        ★ Envío a todo Argentina — Stock permanente
-      </motion.p>
+    <section className="relative w-full overflow-hidden bg-[var(--color-navy)]">
+      <div className="relative mx-auto h-[clamp(520px,min(56vw,72vh),680px)] w-full min-[1220px]:h-[clamp(580px,52vw,78vh)]">
+        <Image
+          src="/images/heroimg.png"
+          alt="Neumáticos importados"
+          fill
+          priority
+          sizes="100vw"
+          className="object-contain object-center min-[1220px]:object-cover min-[1220px]:object-[center_84%]"
+        />
 
-      <motion.h1
-        variants={itemVariants}
-        className="mb-4 font-condensed text-[32px] font-black uppercase leading-[0.92] tracking-[0.01em] sm:text-[44px] md:text-[52px]"
-      >
-        EL NEUMÁTICO
-        <br />
-        <span className="text-orange">IMPORTADO</span>
-        <br />
-        QUE TU AUTO
-        <br />
-        NECESITA
-      </motion.h1>
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[rgba(13,27,42,0.5)] via-transparent to-[rgba(13,27,42,0.6)]"
+          aria-hidden
+        />
 
-      <motion.p
-        variants={itemVariants}
-        className="mb-7 max-w-[400px] text-[13px] leading-[1.65] md:text-[14px]"
-        style={{ color: "var(--color-text-on-dark)" }}
-      >
-        Pirelli, Dunlop, Bridgestone, Corven y más. Comprá desde casa con envío a todo el país.
-      </motion.p>
+        <div className="absolute inset-0 z-10 flex flex-col justify-between px-4 py-6 sm:px-6 sm:py-7 md:px-8 md:py-8">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="pointer-events-auto mx-auto w-full max-w-[1280px] text-center"
+          >
+            <motion.p
+              variants={itemVariants}
+              className="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-orange drop-shadow-sm sm:mb-3 sm:text-[11px]"
+            >
+              ★ Envío a todo Argentina — Stock permanente
+            </motion.p>
 
-      <motion.div variants={itemVariants} className="flex flex-wrap gap-3">
-        <Link
-          href="/catalogo"
-          className="inline-flex items-center gap-2 rounded-[4px] bg-orange px-5 py-3 text-[12px] font-extrabold uppercase tracking-[0.07em] text-white transition-colors duration-150 hover:bg-[var(--color-orange-hover)]"
-        >
-          Ver catálogo
-        </Link>
-        <Link
-          href="/catalogo?badge=oferta"
-          className="inline-flex items-center gap-2 rounded-[4px] border border-white/20 bg-white/8 px-5 py-3 text-[12px] font-bold uppercase tracking-[0.07em] text-white backdrop-blur-sm transition-colors duration-150 hover:border-white/40"
-          style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
-        >
-          Ver ofertas
-        </Link>
-      </motion.div>
-    </motion.div>
+            <motion.h1
+              variants={itemVariants}
+              className="mx-auto max-w-[20ch] font-condensed text-[clamp(24px,3.8vw,48px)] font-black uppercase leading-[0.95] tracking-[0.01em] text-white drop-shadow-md sm:max-w-none md:text-[clamp(28px,4vw,52px)]"
+            >
+              EL NEUMÁTICO <span className="text-orange">IMPORTADO</span>
+              <br className="hidden sm:block" />
+              <span className="sm:hidden"> </span>
+              QUE TU AUTO NECESITA
+            </motion.h1>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="pointer-events-auto mx-auto w-full max-w-[1280px] text-center"
+          >
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap justify-center gap-3 sm:gap-4"
+            >
+              <Link
+                href="/catalogo"
+                className="inline-block rounded-[3px] bg-orange px-6 py-2.5 font-sans text-[12px] font-extrabold uppercase tracking-[0.07em] text-white shadow-lg transition-colors duration-150 hover:bg-[var(--color-orange-hover)] sm:px-8 sm:py-3 sm:text-[13px]"
+              >
+                Ver catálogo
+              </Link>
+              <Link
+                href="/catalogo?badge=oferta"
+                className="inline-block rounded-[3px] border-2 border-white/60 bg-[rgba(13,27,42,0.35)] px-6 py-2 font-sans text-[12px] font-bold uppercase tracking-[0.07em] text-white shadow-lg backdrop-blur-sm transition-colors duration-150 hover:border-white sm:px-8 sm:py-[11px] sm:text-[13px]"
+              >
+                Ver ofertas
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
   );
 }

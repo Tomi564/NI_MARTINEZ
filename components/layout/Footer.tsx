@@ -57,9 +57,6 @@ export default function Footer() {
               <SocialIcon href="#" label="Facebook">
                 <FacebookIcon />
               </SocialIcon>
-              <SocialIcon href="#" label="WhatsApp">
-                <WhatsappIcon />
-              </SocialIcon>
               <SocialIcon href="#" label="TikTok">
                 <TiktokIcon />
               </SocialIcon>
@@ -147,15 +144,6 @@ function FacebookIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M14 8H16V5H14C11.8 5 10 6.8 10 9V11H8V14H10V19H13V14H15.5L16 11H13V9C13 8.4 13.4 8 14 8Z" fill="currentColor" />
-    </svg>
-  );
-}
-
-function WhatsappIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M19.5 11.5C19.5 15.6 16.1 19 12 19C10.8 19 9.7 18.7 8.6 18.2L5 19L5.8 15.4C5.3 14.3 5 13.2 5 12C5 7.9 8.4 4.5 12.5 4.5C16.6 4.5 19.5 7.4 19.5 11.5Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-      <path d="M9.5 10C9.9 11.2 10.8 12.1 12 12.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }
