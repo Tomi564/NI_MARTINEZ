@@ -23,7 +23,7 @@ const FAQs: { q: string; a: string }[] = [
   },
   {
     q: "¿Hacen instalación?",
-    a: "No realizamos instalación. Solo somos venta y distribución online. Podemos recomendarte una gomería cerca de tu domicilio.",
+    a: "No realizamos instalación. Solo somos venta y distribución online. Si estás en Salta o Jujuy, podés acercarte a cualquiera de las sucursales de Martínez Neumáticos para el montaje y balanceo. Si estás en otra provincia, cualquier gomería de confianza cerca tuyo puede hacerlo.",
   },
   {
     q: "¿Los precios incluyen IVA?",
@@ -231,7 +231,7 @@ export default function ContactoPage() {
                       Horario de atención
                     </p>
                     <p className="font-sans text-[12px] font-normal leading-[1.6] text-text-secondary">
-                      Respondemos consultas de lunes a viernes de 9 a 18hs. Tiempo de respuesta: hasta
+                      Respondemos consultas de lunes a sábado de 8 a 18hs. Tiempo de respuesta: hasta
                       24hs hábiles.
                     </p>
                   </div>

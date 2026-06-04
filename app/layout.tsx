@@ -5,7 +5,9 @@ import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import PromoBand from "@/components/layout/PromoBand";
+import PromoPopup from "@/components/shared/PromoPopup";
 import PromoToast from "@/components/shared/PromoToast";
+import WhatsAppButton from "@/components/shared/WhatsAppButton";
 import { getMetadataBase } from "@/lib/site";
 
 const saira = Saira({
@@ -60,6 +62,8 @@ export default function RootLayout({
           </Suspense>
         </header>
         <main className="w-full">{children}</main>
+        <WhatsAppButton />
+        <PromoPopup />
         <PromoToast />
         <Footer />
       </body>

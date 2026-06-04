@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 
 const messages = [
-  "🚚 Envío gratis a todo el país",
-  "💳 Hasta 12 cuotas sin interés",
-  "✅ Originales certificados con DOT",
-  "🔄 Cambio gratis si te equivocás",
+  "💳 10 cuotas sin interés con tarjetas Naranja",
+  "🏦 Tarjetas bancarizadas 12 cuotas",
+  "✅ Compra certificada y segura",
+  "🎧 Asesoramiento personalizado",
 ];
 
 export default function PromoBand() {

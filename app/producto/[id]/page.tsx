@@ -119,7 +119,7 @@ export default function ProductoPage({ params }: ProductoPageProps) {
                 className="inline-flex w-full items-center justify-center gap-2 rounded-[4px] bg-orange px-4 py-[13px] text-[14px] font-extrabold uppercase tracking-[0.07em] text-white transition-colors duration-150 hover:bg-[var(--color-orange-hover)]"
               >
                 <CartIcon />
-                Comprar en Mercado Libre
+                Comprar
               </Link>
               <Link
                 href="/contacto"
@@ -128,15 +128,11 @@ export default function ProductoPage({ params }: ProductoPageProps) {
                 Consultar disponibilidad
               </Link>
             </div>
-            <p className="mt-2 text-center text-[10px] text-text-secondary">
-              Serás redirigido a Mercado Libre para finalizar tu compra
-            </p>
 
             {/* Trust bullets */}
             <div className="mt-4 rounded-[6px] border border-gray-border bg-white p-4">
               <InfoRow icon={<TruckIcon />} title="Envío gratis a todo el país" detail="Entrega estimada: 24 a 72hs hábiles" />
-              <InfoRow icon={<ShieldIcon />} title="Producto original certificado" detail="DOT visible en cada unidad" />
-              <InfoRow icon={<RefreshIcon />} title="Cambio gratis" detail="Si te equivocás de medida, lo cambiamos" last />
+              <InfoRow icon={<ShieldIcon />} title="Producto original certificado" detail="DOT visible en cada unidad" last />
             </div>
           </div>
         </div>
@@ -283,14 +279,6 @@ function ShieldIcon() {
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M12 3 19 6V12C19 16.4 15.9 20.3 12 21C8.1 20.3 5 16.4 5 12V6L12 3Z" stroke="currentColor" strokeWidth="2" />
       <path d="M9 12 11 14 15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function RefreshIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M4 12a8 8 0 0 1 13.7-5.6L20 9M20 9V5M20 12a8 8 0 0 1-13.7 5.6L4 15M4 15v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }

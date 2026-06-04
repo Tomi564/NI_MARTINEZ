@@ -90,7 +90,7 @@ export default function ProductCard({ producto, className }: ProductCardProps) {
 
               <span className="mt-2 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-[4px] bg-navy px-2 py-[8px] text-[10px] font-bold uppercase tracking-[0.07em] text-white transition-colors duration-150 hover:bg-orange">
                 <CartIcon />
-                Comprar en MELI
+                Comprar
               </span>
             </div>
           </div>

@@ -17,7 +17,7 @@ const faqs: FaqItem[] = [
   {
     pregunta: "¿Los neumáticos vienen montados?",
     respuesta:
-      "No. Vendemos únicamente la cubierta (el neumático sin montar). Una vez que lo recibís en tu domicilio, tenés que llevarlo a una gomería para el montaje y balanceo, que generalmente cuesta entre $3.000 y $8.000 por unidad según la zona.",
+      "No. Vendemos únicamente la cubierta (el neumático sin montar). Una vez que lo recibís en tu domicilio, tenés que llevarlo a una sucursal de Martínez Neumáticos (si estás en Salta o Jujuy) o a cualquier gomería de confianza para el montaje y balanceo, que generalmente cuesta entre $3.000 y $8.000 por unidad según la zona.",
   },
   {
     pregunta: "¿Cómo se realiza el pago?",

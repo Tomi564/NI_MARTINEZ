@@ -39,7 +39,7 @@ const pasos: Paso[] = [
     numero: "04",
     titulo: "Lo montás en una gomería",
     descripcion:
-      "El neumático llega sin montar — es solo la cubierta. Llevalo a cualquier gomería de confianza cerca tuyo para el montaje y balanceo.",
+      "El neumático llega sin montar — es solo la cubierta. Si estás en Salta o Jujuy, podés llevarlo a cualquier sucursal de Martínez Neumáticos. En el resto del país, cualquier gomería de confianza puede hacerlo.",
     icono: <WrenchIcon />,
   },
 ];

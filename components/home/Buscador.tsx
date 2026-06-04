@@ -26,7 +26,21 @@ const marcasAuto = [
   "Renault","Peugeot","Fiat","Honda","Hyundai","Nissan","Citroën","Jeep",
 ] as const;
 
-const modeloToyota = ["Corolla","Hilux","RAV4","Yaris","Land Cruiser"] as const;
+const modelosPorMarca: Record<string, string[]> = {
+  Toyota: ["Corolla", "Hilux", "RAV4", "Yaris", "SW4", "Etios", "Land Cruiser", "Rush", "Fortuner"],
+  Volkswagen: ["Gol", "Polo", "Vento", "Golf", "Amarok", "T-Cross", "Tiguan", "Taos", "Virtus"],
+  Ford: ["Ka", "Fiesta", "Focus", "EcoSport", "Ranger", "Maverick", "Territory", "Bronco Sport", "Mondeo"],
+  Chevrolet: ["Onix", "Cruze", "Tracker", "S10", "Spin", "Captiva", "Montana", "Trailblazer", "Equinox"],
+  Renault: ["Sandero", "Logan", "Kwid", "Duster", "Oroch", "Kangoo", "Fluence", "Koleos", "Captur"],
+  Peugeot: ["208", "2008", "308", "3008", "5008", "408", "Partner", "Expert", "Landtrek"],
+  Fiat: ["Mobi", "Argo", "Cronos", "Pulse", "Fastback", "Toro", "Strada", "Ducato", "Doblò"],
+  Honda: ["Fit", "City", "Civic", "HR-V", "CR-V", "WR-V", "Accord", "Ridgeline", "Pilot"],
+  Hyundai: ["HB20", "i30", "Elantra", "Tucson", "Santa Fe", "Creta", "Venue", "Kona", "Ioniq"],
+  Nissan: ["March", "Versa", "Sentra", "Kicks", "X-Trail", "Frontier", "Pathfinder", "Murano", "Navara"],
+  "Citroën": ["C3", "C4", "C4 Cactus", "Berlingo", "Jumpy", "C5 Aircross", "C3 Aircross", "SpaceTourer"],
+  Jeep: ["Renegade", "Compass", "Wrangler", "Grand Cherokee", "Gladiator", "Commander", "Cherokee"],
+};
+
 const years = Array.from({ length: 16 }, (_, idx) => String(2010 + idx));
 
 const LABEL_CLASS = "mb-1 block text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--color-text-on-dark)]";
@@ -44,8 +58,9 @@ export default function Buscador() {
   const [anio, setAnio] = useState(years[0] ?? "2010");
 
   const modeloOptions = useMemo<string[]>(() => {
-    if (marcaAuto === "Toyota") return [...modeloToyota];
-    return ["Seleccioná modelo"];
+    if (marcaAuto === "Seleccioná") return ["Seleccioná modelo"];
+    const models = modelosPorMarca[marcaAuto];
+    return models ? ["Seleccioná modelo", ...models] : ["Seleccioná modelo"];
   }, [marcaAuto]);
 
   return (
@@ -89,8 +104,7 @@ export default function Buscador() {
                 value={marcaAuto}
                 onChange={(v) => {
                   setMarcaAuto(v);
-                  if (v !== "Toyota") setModelo("Seleccioná modelo");
-                  else setModelo("Corolla");
+                  setModelo("Seleccioná modelo");
                 }}
                 options={marcasAuto}
               />
