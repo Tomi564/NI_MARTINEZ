@@ -1,6 +1,7 @@
 "use client";
 
 import ProductCard from "@/components/catalogo/ProductCard";
+import FadeInView from "@/components/shared/FadeInView";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { productosMock } from "@/lib/mockProductos";
 
@@ -17,12 +18,9 @@ export default function ProductosDestacados() {
 
         <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
           {productosMock.map((producto, index) => (
-            <div
-              key={producto.id}
-              className={`flex ${index >= 4 ? "hidden lg:flex" : ""}`}
-            >
+            <FadeInView key={producto.id} delay={index * 0.08} className={`flex ${index >= 4 ? "hidden lg:flex" : ""}`}>
               <ProductCard producto={producto} className="w-full" />
-            </div>
+            </FadeInView>
           ))}
         </div>
       </div>

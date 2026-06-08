@@ -11,6 +11,7 @@ const PAIS_BANDERA: Record<string, string> = {
   Argentina: "🇦🇷",
   Francia: "🇫🇷",
   Alemania: "🇩🇪",
+  China: "🇨🇳",
   "Corea del Sur": "🇰🇷",
   Taiwán: "🇹🇼",
 };
@@ -46,10 +47,16 @@ const ESPECIALIDAD_DESCRIPCION: Record<string, string> = {
   "Fórmula E": "Desarrollo en el campeonato eléctrico de élite.",
   Motos: "Líneas especializadas para dos ruedas.",
   SUV: "Capacidad de carga y estabilidad en utilitarios.",
-  "Historia argentina": "Casi un siglo acompañando al país.",
-  Confiabilidad: "Rendimiento constante en el día a día.",
-  "Precio accesible": "Calidad nacional a un costo razonable.",
-  "Rutas locales": "Adaptados a pavimento y clima argentino.",
+  Camión: "Neumáticos diseñados para carga pesada y transporte.",
+  "Carga pesada": "Resistencia para vehículos de transporte pesado.",
+  Transporte: "Soluciones para logística y larga distancia.",
+  "Larga distancia": "Durabilidad optimizada para rutas extensas.",
+  Agrícola: "Tracción y resistencia en terrenos de campo.",
+  "Maquinaria de campo": "Diseñados para equipos agrícolas.",
+  Tracción: "Agarre confiable en todo tipo de terreno.",
+  "Calidad-precio": "Calidad comprobada a precio accesible.",
+  "Precio-rendimiento": "Máximo rendimiento por cada peso invertido.",
+  "Precio accesible": "Calidad comprobada a un costo razonable.",
 };
 
 export function getMarcaBySlug(slug: string): MarcaData | undefined {

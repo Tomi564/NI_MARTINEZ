@@ -1,5 +1,8 @@
-import SectionTitle from "@/components/shared/SectionTitle";
+"use client";
+
 import type { ReactNode } from "react";
+import FadeInView from "@/components/shared/FadeInView";
+import SectionTitle from "@/components/shared/SectionTitle";
 
 type ConfianzaItem = { titulo: string; texto: string; icon: ReactNode };
 
@@ -29,19 +32,18 @@ export default function Confianza() {
         <SectionTitle title="Por qué " highlight="elegirnos" />
 
         <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-3">
-          {items.map((item) => (
-            <article
-              key={item.titulo}
-              className="flex flex-col gap-3 rounded-[6px] border border-gray-border border-t-[3px] border-t-orange bg-white p-5"
-            >
-              <div className="flex h-[40px] w-[40px] items-center justify-center rounded-[4px] bg-gray-bg text-navy">
-                {item.icon}
-              </div>
-              <h3 className="text-[14px] font-bold leading-[1.2] text-text-primary">
-                {item.titulo}
-              </h3>
-              <p className="text-[12px] leading-[1.6] text-text-secondary">{item.texto}</p>
-            </article>
+          {items.map((item, index) => (
+            <FadeInView key={item.titulo} delay={index * 0.08}>
+              <article className="flex h-full flex-col gap-3 rounded-[6px] border border-gray-border border-t-[3px] border-t-orange bg-white p-5">
+                <div className="flex h-[40px] w-[40px] items-center justify-center rounded-[4px] bg-gray-bg text-navy">
+                  {item.icon}
+                </div>
+                <h3 className="text-[14px] font-bold leading-[1.2] text-text-primary">
+                  {item.titulo}
+                </h3>
+                <p className="text-[12px] leading-[1.6] text-text-secondary">{item.texto}</p>
+              </article>
+            </FadeInView>
           ))}
         </div>
       </div>

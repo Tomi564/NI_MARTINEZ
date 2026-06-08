@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import MagneticButton from "@/components/shared/MagneticButton";
 import { useCallback, useEffect, useState } from "react";
 
 interface BannerItem {
@@ -78,10 +79,17 @@ export default function BannersCarrusel() {
   }, [timerKey]);
 
   return (
-    <section
-      className="relative w-full overflow-hidden transition-colors duration-[400ms] h-[200px] md:h-[160px]"
+    <motion.section
+      className="group relative h-[200px] w-full overflow-hidden transition-colors duration-[400ms] md:h-[160px]"
       style={{ backgroundColor: activeBanner.color }}
+      whileHover="hover"
     >
+      <motion.div
+        className="pointer-events-none absolute inset-0"
+        style={{ backgroundColor: activeBanner.color }}
+        variants={{ hover: { scale: 1.02 } }}
+        transition={{ duration: 0.4 }}
+      />
       <AnimatePresence mode="wait">
         <motion.div
           key={activeBanner.id}
@@ -89,7 +97,7 @@ export default function BannersCarrusel() {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.35, ease: "easeInOut" }}
-          className="absolute inset-0"
+          className="absolute inset-0 z-10"
         >
           <div className="mx-auto flex h-full max-w-[1280px] flex-col justify-center px-6 py-6 md:flex-row md:items-center md:px-8">
             <div>
@@ -111,12 +119,14 @@ export default function BannersCarrusel() {
             </div>
 
             <div className="mt-4 shrink-0 md:ml-auto md:mt-0">
-              <Link
-                href={activeBanner.href}
-                className="inline-block rounded-[3px] bg-orange px-6 py-[10px] text-[12px] font-bold uppercase tracking-[0.06em] text-white transition-colors duration-150 hover:bg-[var(--color-orange-hover)]"
-              >
-                {activeBanner.cta}
-              </Link>
+              <MagneticButton>
+                <Link
+                  href={activeBanner.href}
+                  className="inline-block rounded-[3px] bg-orange px-6 py-[10px] text-[12px] font-bold uppercase tracking-[0.06em] text-white transition-colors duration-150 hover:bg-[var(--color-orange-hover)]"
+                >
+                  {activeBanner.cta}
+                </Link>
+              </MagneticButton>
             </div>
           </div>
         </motion.div>
@@ -159,7 +169,7 @@ export default function BannersCarrusel() {
           </button>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
 

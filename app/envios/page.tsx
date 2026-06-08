@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import PageHeroTitle from "@/components/shared/PageHeroTitle";
 
 export const metadata: Metadata = {
   title: "Envíos garantizados | Neumáticos Importados",
@@ -73,8 +72,8 @@ export default function EnviosPage() {
             <span className="opacity-40">→</span>
             <span className="text-white/60">Envíos</span>
           </nav>
-          <h1 className="font-condensed text-[28px] font-black uppercase leading-none text-white md:text-[34px]">
-            <PageHeroTitle text="Envíos garantizados" />
+          <h1 className="font-condensed text-[28px] font-black uppercase text-white md:text-[32px]">
+            Envíos y Garantías
           </h1>
           <p className="mt-1.5 text-[13px]" style={{ color: "var(--color-text-on-dark)" }}>
             Todo lo que necesitás saber antes de comprar

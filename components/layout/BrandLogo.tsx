@@ -17,8 +17,8 @@ const VARIANTS: Record<
     priority?: boolean;
   }
 > = {
-  nav: { width: 220, height: 38, scale: 4.5, offsetX: -10, offsetY: 1, priority: true },
-  footer: { width: 200, height: 34, scale: 4.2, offsetX: -8, offsetY: 0 },
+  nav: { width: 255, height: 44, scale: 4.5, offsetX: -10, offsetY: 1, priority: true },
+  footer: { width: 235, height: 40, scale: 4.2, offsetX: -8, offsetY: 0 },
   mobile: { width: 190, height: 36, scale: 4.2, offsetX: -10, offsetY: 1 },
 };
 

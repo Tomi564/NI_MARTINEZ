@@ -5,7 +5,7 @@
 :root {
   --color-navy: #0d1b2a;
   --color-navy-mid: #1a2e44;
-  --color-navy-dark: #0a1520;
+  --color-navy-dark: #070f18;
   --color-orange: #e84e0f;
   --color-orange-hover: #c43d0a;
   --color-gray-bg: #f0f2f4;
@@ -23,8 +23,8 @@
   --color-text-hero-sub: #6a8090;
   --color-buscador-separator: #3a5a6a;
   --color-footer-desc: #7a9aaa;
-  --color-footer-col-link: #6a8090;
-  --color-footer-legal: #5a7080;
+  --color-footer-col-link: #8aaabb;
+  --color-footer-legal: #4a6070;
   --color-navy-surface: #112233;
   --color-navy-border: #1e3a55;
   --color-navy-divider: #2a4a64;

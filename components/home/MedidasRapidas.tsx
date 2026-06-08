@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import FadeInView from "@/components/shared/FadeInView";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { displayToSlug } from "@/lib/medidas";
 
@@ -19,17 +22,19 @@ export default function MedidasRapidas() {
           linkHref="/catalogo"
         />
 
-        <div className="mt-5 flex flex-wrap gap-2">
-          {medidas.map((medida) => (
-            <Link
-              key={medida}
-              href={`/neumaticos/${displayToSlug(medida)}`}
-              className="rounded-[4px] border border-gray-border bg-white px-4 py-2 text-[12px] font-bold tracking-[0.04em] text-text-primary transition-colors duration-150 hover:border-orange hover:bg-orange hover:text-white"
-            >
-              {medida}
-            </Link>
-          ))}
-        </div>
+        <FadeInView delay={0.1}>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {medidas.map((medida) => (
+              <Link
+                key={medida}
+                href={`/neumaticos/${displayToSlug(medida)}`}
+                className="rounded-[4px] border border-gray-border bg-white px-4 py-2 text-[12px] font-bold tracking-[0.04em] text-text-primary transition-colors duration-150 hover:border-orange hover:bg-orange hover:text-white"
+              >
+                {medida}
+              </Link>
+            ))}
+          </div>
+        </FadeInView>
       </div>
     </section>
   );

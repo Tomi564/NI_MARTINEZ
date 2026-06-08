@@ -1,6 +1,12 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import FadeInView from "@/components/shared/FadeInView";
+import SectionWatermark from "@/components/shared/SectionWatermark";
 import SectionTitle from "@/components/shared/SectionTitle";
+import TireTrack from "@/components/shared/TireTrack";
 
 type Categoria = {
   id: string;
@@ -42,26 +48,58 @@ const categorias: Array<Categoria & { icon: ReactNode }> = [
 
 export default function Categorias() {
   return (
-    <section className="w-full bg-[var(--color-navy)]">
-      <div className="mx-auto max-w-[1280px] px-6 py-12 md:px-8 md:py-16">
+    <section className="relative w-full overflow-hidden bg-[var(--color-navy)]">
+      <TireTrack />
+      <SectionWatermark />
+      <div className="relative z-10 mx-auto max-w-[1280px] px-6 py-12 md:px-8 md:py-16">
         <SectionTitle title="Buscá por " highlight="tipo de vehículo" light />
 
-        <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4">
-          {categorias.map((categoria) => (
-            <Link key={categoria.id} href={categoria.href} className="group block">
-              <article className="cursor-pointer rounded-[6px] border-[0.5px] border-[var(--color-navy-strong-border)] border-l-[3px] border-l-orange bg-[var(--color-navy)] p-5 transition-colors duration-150 hover:bg-[var(--color-navy-surface)]">
-                <span className="block text-white/15">{categoria.icon}</span>
-                <h3 className="mt-3 font-condensed text-[16px] font-black uppercase tracking-[0.04em] text-white">
-                  {categoria.label}
-                </h3>
-                <p className="mt-1 text-[11px] leading-[1.5]" style={{ color: "var(--color-text-on-dark)" }}>
-                  {categoria.sub}
-                </p>
-                <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.08em] text-orange">
-                  Ver catálogo →
-                </p>
-              </article>
-            </Link>
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+          {categorias.map((categoria, index) => (
+            <FadeInView key={categoria.id} delay={index * 0.08} direction="up">
+              <Link href={categoria.href} className="block">
+                <motion.div
+                  className="relative cursor-pointer overflow-hidden rounded-[5px] border-l-[3px] border-[var(--color-orange)]"
+                  initial="rest"
+                  whileHover="hover"
+                  variants={{ rest: {}, hover: {} }}
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-[var(--color-navy)]"
+                    variants={{
+                      hover: { backgroundColor: "#1A2E44" },
+                    }}
+                    transition={{ duration: 0.2 }}
+                  />
+
+                  <div className="relative z-10 p-5">
+                    <span className="block text-white/15">{categoria.icon}</span>
+                    <h3 className="mt-3 font-condensed text-[16px] font-black uppercase tracking-[0.04em] text-white">
+                      {categoria.label}
+                    </h3>
+                    <p
+                      className="mt-1 text-[11px] leading-[1.5]"
+                      style={{ color: "var(--color-text-on-dark)" }}
+                    >
+                      {categoria.sub}
+                    </p>
+
+                    <div className="mt-3 flex items-center gap-1">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-orange">
+                        Ver catálogo
+                      </span>
+                      <motion.span
+                        className="text-[14px] text-orange"
+                        variants={{ hover: { x: 5 } }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        →
+                      </motion.span>
+                    </div>
+                  </div>
+                </motion.div>
+              </Link>
+            </FadeInView>
           ))}
         </div>
       </div>

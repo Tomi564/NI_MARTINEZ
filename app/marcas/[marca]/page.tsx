@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import MarcaLogoHeader from "@/components/marcas/MarcaLogoHeader";
+import OtraMarcaCard from "@/components/marcas/OtraMarcaCard";
+import SectionWatermark from "@/components/shared/SectionWatermark";
 import ProductGrid from "@/components/catalogo/ProductGrid";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { marcasData } from "@/lib/marcas-data";
@@ -66,8 +69,9 @@ export default function MarcaPage({ params }: MarcaPageProps) {
   return (
     <div className="min-h-screen bg-gray-bg">
       {/* Sección 1 — Header */}
-      <section className="w-full border-b-[3px] border-orange bg-navy">
-        <div className="mx-auto max-w-[1280px] px-5 py-8 md:px-8 md:py-10">
+      <section className="relative w-full overflow-hidden border-b-[3px] border-orange bg-navy">
+        <SectionWatermark />
+        <div className="relative z-10 mx-auto max-w-[1280px] px-5 py-8 md:px-8 md:py-10">
           <nav className="mb-4 flex flex-wrap items-center gap-1 text-[11px] text-[var(--color-text-on-dark)]">
             <Link href="/" className="transition-colors hover:text-white">
               Inicio
@@ -82,7 +86,8 @@ export default function MarcaPage({ params }: MarcaPageProps) {
 
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-start">
             <div>
-              <h1 className="font-condensed text-[32px] font-black uppercase leading-tight tracking-[0.02em] text-white">
+              <MarcaLogoHeader nombre={marca.nombre} slug={marca.slug} />
+              <h1 className="font-condensed text-[32px] font-black uppercase leading-tight text-white">
                 Neumáticos {marca.nombre}
               </h1>
               <p className="mt-3 max-w-[640px] text-[14px] font-normal leading-relaxed text-[#8FAABB]">
@@ -207,34 +212,15 @@ export default function MarcaPage({ params }: MarcaPageProps) {
       <section className="w-full bg-navy">
         <div className="mx-auto max-w-[1280px] px-5 py-10 md:px-8 md:py-14">
           <SectionTitle title="Otras " highlight="marcas" light />
-          <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
-            {otrasMarcas.map((otra) => {
-              const count = countProductosPorMarca(otra.nombre);
-              return (
-                <article
-                  key={otra.slug}
-                  className="flex flex-col rounded-[6px] border border-[var(--color-navy-border)] bg-[var(--color-navy-surface)] p-4"
-                >
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-[4px] bg-[rgba(255,255,255,0.06)]">
-                    <span className="font-condensed text-[22px] font-black text-white">
-                      {otra.nombre.charAt(0)}
-                    </span>
-                  </div>
-                  <h3 className="font-condensed text-[16px] font-black uppercase text-white">
-                    {otra.nombre}
-                  </h3>
-                  <p className="mt-1 text-[10px] text-[var(--color-text-on-dark)]">
-                    {count > 0 ? `${count} productos` : "Ver catálogo"}
-                  </p>
-                  <Link
-                    href={`/marcas/${otra.slug}`}
-                    className="mt-3 inline-flex items-center justify-center rounded-[4px] border border-orange bg-transparent px-3 py-2 text-[10px] font-bold uppercase tracking-[0.06em] text-orange transition-colors hover:bg-orange hover:text-white"
-                  >
-                    Ver marca →
-                  </Link>
-                </article>
-              );
-            })}
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+            {otrasMarcas.map((otra) => (
+              <OtraMarcaCard
+                key={otra.slug}
+                slug={otra.slug}
+                nombre={otra.nombre}
+                productos={countProductosPorMarca(otra.nombre)}
+              />
+            ))}
           </div>
         </div>
       </section>

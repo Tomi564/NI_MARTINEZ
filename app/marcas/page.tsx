@@ -6,7 +6,7 @@ import { countProductosPorMarca } from "@/lib/marcas";
 
 export const metadata: Metadata = {
   title: "Marcas | Neumáticos Importados",
-  description: "Trabajamos con Pirelli, Dunlop, Bridgestone, Goodyear, Corven y más.",
+  description: "Trabajamos con Pirelli, Dunlop, Continental, Falken, Corven, Chao Yang y más.",
 };
 
 export default function MarcasPage() {

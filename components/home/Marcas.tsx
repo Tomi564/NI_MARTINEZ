@@ -1,18 +1,22 @@
+"use client";
+
 import Link from "next/link";
+import MarcaCard from "@/components/home/MarcaCard";
+import FadeInView from "@/components/shared/FadeInView";
 import SectionTitle from "@/components/shared/SectionTitle";
 
-type Marca = { id: string; nombre: string; productos: number };
+type Marca = { id: string; nombre: string; categorias: string[]; productos: number };
 
 const marcas: Marca[] = [
-  { id: "pirelli", nombre: "Pirelli", productos: 42 },
-  { id: "dunlop", nombre: "Dunlop", productos: 38 },
-  { id: "bridgestone", nombre: "Bridgestone", productos: 51 },
-  { id: "goodyear", nombre: "Goodyear", productos: 29 },
-  { id: "corven", nombre: "Corven", productos: 33 },
-  { id: "michelin", nombre: "Michelin", productos: 27 },
-  { id: "continental", nombre: "Continental", productos: 19 },
-  { id: "hankook", nombre: "Hankook", productos: 24 },
-  { id: "maxxis", nombre: "Maxxis", productos: 31 },
+  { id: "pirelli", nombre: "Pirelli", categorias: ["Auto", "Camión"], productos: 0 },
+  { id: "dunlop", nombre: "Dunlop", categorias: ["Auto"], productos: 0 },
+  { id: "continental", nombre: "Continental", categorias: ["Auto"], productos: 0 },
+  { id: "falken", nombre: "Falken", categorias: ["Auto"], productos: 0 },
+  { id: "corven", nombre: "Corven", categorias: ["Auto", "Camión"], productos: 0 },
+  { id: "chaoyang", nombre: "Chao Yang", categorias: ["Auto"], productos: 0 },
+  { id: "cargopower", nombre: "Cargo Power", categorias: ["Camión"], productos: 0 },
+  { id: "westlake", nombre: "Westlake", categorias: ["Camión"], productos: 0 },
+  { id: "seat", nombre: "Seat Agrícola", categorias: ["Agrícola"], productos: 0 },
 ];
 
 export default function Marcas() {
@@ -26,23 +30,15 @@ export default function Marcas() {
           linkHref="/marcas"
         />
 
-        <div className="mt-5 grid grid-cols-3 gap-2 sm:grid-cols-5 md:grid-cols-5">
-          {marcas.map((marca) => (
-            <Link key={marca.id} href={`/catalogo?marca=${encodeURIComponent(marca.id)}`} className="group">
-              <article className="flex cursor-pointer flex-col items-center gap-2 rounded-[6px] border border-gray-border bg-white p-4 transition-all duration-150 hover:border-orange hover:shadow-sm">
-                <div className="flex h-[32px] w-[56px] items-center justify-center rounded-[3px] bg-gray-bg">
-                  <span className="text-[15px] font-black text-[var(--color-logo-muted)]">
-                    {marca.nombre.charAt(0)}
-                  </span>
-                </div>
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.08em] text-text-primary">
-                  {marca.nombre}
-                </h3>
-                <p className="text-[9px] text-text-secondary">{marca.productos} productos</p>
-              </article>
-            </Link>
-          ))}
-        </div>
+        <FadeInView delay={0.1}>
+          <div className="mt-5 grid grid-cols-3 items-stretch gap-2 sm:grid-cols-5 md:grid-cols-5">
+            {marcas.map((marca) => (
+              <Link key={marca.id} href={`/marcas/${marca.id}`} className="group flex">
+                <MarcaCard marca={marca} className="w-full" />
+              </Link>
+            ))}
+          </div>
+        </FadeInView>
       </div>
     </section>
   );

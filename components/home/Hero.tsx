@@ -3,6 +3,8 @@
 import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import MagneticButton from "@/components/shared/MagneticButton";
+import WipeTitle from "@/components/shared/WipeTitle";
 
 const containerVariants: Variants = {
   hidden: {},
@@ -50,10 +52,20 @@ export default function Hero() {
               variants={itemVariants}
               className="mx-auto max-w-[20ch] font-condensed text-[clamp(24px,3.8vw,48px)] font-black uppercase leading-[0.95] tracking-[0.01em] text-white drop-shadow-md sm:max-w-none md:text-[clamp(28px,4vw,52px)]"
             >
-              EL NEUMÁTICO <span className="text-orange">IMPORTADO</span>
-              <br className="hidden sm:block" />
-              <span className="sm:hidden"> </span>
-              QUE TU AUTO NECESITA
+              <div className="block">
+                <WipeTitle delay={0}>EL NEUMÁTICO</WipeTitle>
+              </div>
+              <div className="block">
+                <WipeTitle delay={0.15}>
+                  <span className="text-orange">IMPORTADO</span>
+                </WipeTitle>
+              </div>
+              <div className="block">
+                <WipeTitle delay={0.3}>QUE TU AUTO</WipeTitle>
+              </div>
+              <div className="block">
+                <WipeTitle delay={0.45}>NECESITA</WipeTitle>
+              </div>
             </motion.h1>
           </motion.div>
 
@@ -67,18 +79,38 @@ export default function Hero() {
               variants={itemVariants}
               className="flex flex-wrap justify-center gap-3 sm:gap-4"
             >
-              <Link
-                href="/catalogo"
-                className="inline-block rounded-[3px] bg-orange px-6 py-2.5 font-sans text-[12px] font-extrabold uppercase tracking-[0.07em] text-white shadow-lg transition-colors duration-150 hover:bg-[var(--color-orange-hover)] sm:px-8 sm:py-3 sm:text-[13px]"
-              >
-                Ver catálogo
-              </Link>
-              <Link
-                href="/catalogo?badge=oferta"
-                className="inline-block rounded-[3px] border-2 border-white/60 bg-[rgba(13,27,42,0.35)] px-6 py-2 font-sans text-[12px] font-bold uppercase tracking-[0.07em] text-white shadow-lg backdrop-blur-sm transition-colors duration-150 hover:border-white sm:px-8 sm:py-[11px] sm:text-[13px]"
-              >
-                Ver ofertas
-              </Link>
+              <MagneticButton strength={0.12}>
+                <motion.div whileHover="hover" className="inline-block">
+                  <Link
+                    href="/catalogo"
+                    className="inline-flex items-center gap-2 rounded-[3px] bg-orange px-6 py-2.5 font-sans text-[12px] font-extrabold uppercase tracking-[0.07em] text-white shadow-lg transition-colors duration-150 hover:bg-[var(--color-orange-hover)] sm:px-8 sm:py-3 sm:text-[13px]"
+                  >
+                    Ver catálogo
+                    <motion.span
+                      variants={{ hover: { x: 6 } }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      →
+                    </motion.span>
+                  </Link>
+                </motion.div>
+              </MagneticButton>
+              <MagneticButton strength={0.12}>
+                <motion.div whileHover="hover" className="inline-block">
+                  <Link
+                    href="/catalogo?badge=oferta"
+                    className="inline-flex items-center gap-2 rounded-[3px] border-2 border-white/60 bg-[rgba(13,27,42,0.35)] px-6 py-2 font-sans text-[12px] font-bold uppercase tracking-[0.07em] text-white shadow-lg backdrop-blur-sm transition-colors duration-150 hover:border-white sm:px-8 sm:py-[11px] sm:text-[13px]"
+                  >
+                    Ver ofertas
+                    <motion.span
+                      variants={{ hover: { x: 6 } }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      →
+                    </motion.span>
+                  </Link>
+                </motion.div>
+              </MagneticButton>
             </motion.div>
           </motion.div>
         </div>

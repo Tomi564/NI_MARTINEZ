@@ -21,7 +21,7 @@ export const productosMock: ProductoMock[] = [
   },
   {
     id: "3",
-    marca: "Bridgestone",
+    marca: "Continental",
     titulo: "Turanza T005",
     medida: "185/65 R15 88H",
     precio: 72490,
@@ -38,7 +38,7 @@ export const productosMock: ProductoMock[] = [
   },
   {
     id: "5",
-    marca: "Goodyear",
+    marca: "Falken",
     titulo: "EfficientGrip Performance 2",
     medida: "195/65 R15 91H",
     precio: 81500,
@@ -56,7 +56,7 @@ export const productosMock: ProductoMock[] = [
   },
   {
     id: "7",
-    marca: "Michelin",
+    marca: "Chao Yang",
     titulo: "Energy Saver+",
     medida: "175/65 R14 82T",
     precio: 58900,

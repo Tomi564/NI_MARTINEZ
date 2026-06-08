@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: NeumaticosMedidaPageProps): P
   const siteUrl = getSiteUrl();
   const canonical = `${siteUrl}/neumaticos/${params.medida}`;
   const title = `Neumáticos ${display} | Comprá Online con Envío a Todo Argentina`;
-  const description = `Comprá neumáticos ${display} online. Pirelli, Dunlop, Bridgestone y más marcas. Envío gratis a todo Argentina. Hasta 12 cuotas sin interés vía Mercado Pago.`;
+  const description = `Comprá neumáticos ${display} online. Pirelli, Dunlop, Continental, Falken y más marcas. Envío gratis a todo Argentina. Hasta 12 cuotas sin interés vía Mercado Pago.`;
   const keywords = `neumáticos ${display}, cubiertas ${display}, neumáticos ${ancho}/${perfil} R${rodado} Argentina, comprar neumáticos online`;
 
   return {

@@ -4,7 +4,10 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { ReactNode } from "react";
 
+import FadeInView from "@/components/shared/FadeInView";
+import SectionWatermark from "@/components/shared/SectionWatermark";
 import SectionTitle from "@/components/shared/SectionTitle";
+import TireTrack from "@/components/shared/TireTrack";
 
 type Paso = {
   numero: string;
@@ -48,14 +51,18 @@ export default function PasosMontaje() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="w-full bg-navy py-12 md:py-16">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-8">
+    <section className="relative w-full overflow-hidden bg-navy py-12 md:py-16">
+      <TireTrack />
+      <SectionWatermark />
+      <div className="relative z-10 mx-auto max-w-[1280px] px-6 md:px-8">
         <SectionTitle light title="¿Cómo " highlight="funciona?" />
 
         {/* Desktop */}
-        <div className="mt-8 hidden md:grid md:grid-cols-4 md:items-start md:gap-6">
+        <div className="hidden md:grid md:grid-cols-4 md:items-start md:gap-6">
           {pasos.map((paso, index) => (
-            <PasoDesktop key={paso.numero} paso={paso} isLast={index === pasos.length - 1} />
+            <FadeInView key={paso.numero} delay={index * 0.08} direction="up">
+              <PasoDesktop paso={paso} isLast={index === pasos.length - 1} />
+            </FadeInView>
           ))}
         </div>
 
@@ -64,8 +71,8 @@ export default function PasosMontaje() {
           {pasos.map((paso, index) => {
             const open = openIndex === index;
             return (
+              <FadeInView key={paso.numero} delay={index * 0.08} direction="up">
               <li
-                key={paso.numero}
                 className={[
                   "overflow-hidden rounded-[5px]",
                   open ? "border-l-[3px] border-l-orange" : "border-l-[3px] border-l-transparent",
@@ -110,6 +117,7 @@ export default function PasosMontaje() {
                   ) : null}
                 </AnimatePresence>
               </li>
+              </FadeInView>
             );
           })}
         </ul>

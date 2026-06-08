@@ -45,6 +45,8 @@ function NavbarInner() {
   const sp = new URLSearchParams(searchParams.toString());
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [navLinksHovered, setNavLinksHovered] = useState(false);
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -68,26 +70,43 @@ function NavbarInner() {
           <BrandLogo variant="nav" />
         </Link>
 
-        <ul className="ml-auto hidden items-center gap-6 md:flex">
+        <ul
+          className="ml-auto hidden items-center gap-6 md:flex"
+          onMouseEnter={() => setNavLinksHovered(true)}
+          onMouseLeave={() => {
+            setNavLinksHovered(false);
+            setHoveredLink(null);
+          }}
+        >
           {navLinks.map((link) => {
             const active = linkIsActive(pathname, sp, link.href);
+            const isHovered = hoveredLink === link.href;
+            const dimmed = navLinksHovered && hoveredLink !== null && !isHovered;
+
             return (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`relative text-[11px] font-bold uppercase tracking-[0.09em] transition-colors duration-150 ${
-                    active
-                      ? "text-white underline decoration-2 underline-offset-[6px]"
+                  onMouseEnter={() => setHoveredLink(link.href)}
+                  className={`relative text-[11px] font-bold uppercase tracking-[0.09em] transition-all duration-150 ${
+                    active || isHovered
+                      ? "text-white"
                       : "text-[var(--color-text-nav)] hover:text-white"
                   }`}
-                  style={
-                    active
-                      ? { textDecorationColor: "var(--color-orange)" }
-                      : undefined
-                  }
+                  style={{ opacity: dimmed ? 0.4 : 1 }}
                   aria-current={active ? "page" : undefined}
                 >
-                  {link.label}
+                  <span className="relative inline-block pb-1">
+                    {link.label}
+                    <motion.span
+                      className="absolute bottom-0 left-0 h-[2px] w-full bg-[var(--color-orange)]"
+                      initial={{ scaleX: active ? 1 : 0 }}
+                      animate={{ scaleX: active || isHovered ? 1 : 0 }}
+                      whileHover={{ scaleX: 1 }}
+                      transition={{ duration: 0.35, ease: "easeOut" }}
+                      style={{ originX: 0.5 }}
+                    />
+                  </span>
                 </Link>
               </li>
             );

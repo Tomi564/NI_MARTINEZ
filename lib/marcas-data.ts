@@ -3,6 +3,7 @@ export interface MarcaData {
   nombre: string;
   paisOrigen: string;
   fundacion: string;
+  categorias: string[];
   descripcionCorta: string;
   descripcionLarga: string;
   especialidad: string[];
@@ -15,109 +16,118 @@ export const marcasData: MarcaData[] = [
     nombre: "Pirelli",
     paisOrigen: "Italia",
     fundacion: "1872",
+    categorias: ["Auto", "Camión"],
     descripcionCorta:
-      "Marca italiana líder en neumáticos de alto rendimiento y equipamiento original.",
+      "Marca italiana líder en neumáticos de alto rendimiento para autos y vehículos de carga.",
     descripcionLarga:
-      "Pirelli es una de las marcas de neumáticos más reconocidas del mundo, fundada en Milán en 1872. Proveedora oficial de la Fórmula 1 desde 2011, Pirelli combina tecnología de punta con un legado de más de 150 años en la industria. Sus neumáticos están presentes como equipamiento original en Ferrari, Lamborghini, Porsche y BMW.",
-    especialidad: ["Alto rendimiento", "Equipamiento original", "Fórmula 1", "SUV premium"],
-    logoFile: "",
+      "Pirelli es una de las marcas de neumáticos más reconocidas del mundo, fundada en Milán en 1872. Con más de 150 años de historia, ofrece soluciones para vehículos particulares de alto rendimiento y una línea completa para camiones y vehículos de carga pesada.",
+    especialidad: ["Alto rendimiento", "Camión", "Fórmula 1", "OEM"],
+    logoFile: "/images/marcas/pirelli.png",
   },
   {
     slug: "dunlop",
     nombre: "Dunlop",
     paisOrigen: "Reino Unido",
     fundacion: "1888",
+    categorias: ["Auto"],
     descripcionCorta:
       "Marca británica con más de 130 años de innovación en neumáticos para todo tipo de vehículo.",
     descripcionLarga:
-      "Dunlop fue fundada en 1888 por John Boyd Dunlop, inventor del neumático neumático moderno. Con más de 130 años de historia, Dunlop es sinónimo de innovación y confiabilidad. Sus líneas SP Sport y Grandtrek son referentes mundiales en performance y tracción 4x4.",
+      "Dunlop fue fundada en 1888 por John Boyd Dunlop, inventor del neumático neumático moderno. Sus líneas SP Sport y Grandtrek son referentes mundiales en performance y tracción 4x4.",
     especialidad: ["Sport", "All terrain", "Turismo", "Camionetas"],
-    logoFile: "",
-  },
-  {
-    slug: "bridgestone",
-    nombre: "Bridgestone",
-    paisOrigen: "Japón",
-    fundacion: "1931",
-    descripcionCorta:
-      "La mayor fabricante de neumáticos del mundo. Tecnología japonesa de precisión.",
-    descripcionLarga:
-      "Bridgestone, fundada en Japón en 1931, es actualmente la empresa fabricante de neumáticos más grande del mundo por volumen de producción. Sus líneas Turanza, Potenza y Dueler son referentes en confort, performance y off-road respectivamente. Proveedora de la Fórmula 1 por más de una década.",
-    especialidad: ["Tecnología japonesa", "Confort", "Performance", "Off-road"],
-    logoFile: "",
-  },
-  {
-    slug: "goodyear",
-    nombre: "Goodyear",
-    paisOrigen: "Estados Unidos",
-    fundacion: "1898",
-    descripcionCorta:
-      "Ícono americano con más de 125 años equipando vehículos en todo el mundo.",
-    descripcionLarga:
-      "Goodyear fue fundada en 1898 en Akron, Ohio. Es una de las marcas más reconocidas globalmente, con presencia en la NASCAR, Fórmula 1 histórica y como proveedor de equipamiento original para Ford, GM y Chrysler. Su línea EfficientGrip es referente en eficiencia de combustible.",
-    especialidad: ["Eficiencia", "Durabilidad", "Americana", "OEM"],
-    logoFile: "",
-  },
-  {
-    slug: "corven",
-    nombre: "Corven",
-    paisOrigen: "Argentina",
-    fundacion: "1995",
-    descripcionCorta:
-      "La marca nacional con mejor relación precio-calidad del mercado argentino.",
-    descripcionLarga:
-      "Corven es una marca argentina fundada en 1995 que se convirtió en referente del mercado local gracias a su excelente relación precio-calidad. Con distribución en todo el país y líneas específicamente desarrolladas para las condiciones de las rutas argentinas, Corven es la elección inteligente para el conductor nacional.",
-    especialidad: ["Precio-calidad", "Mercado local", "Rutas argentinas", "Amplia distribución"],
-    logoFile: "",
-  },
-  {
-    slug: "michelin",
-    nombre: "Michelin",
-    paisOrigen: "Francia",
-    fundacion: "1889",
-    descripcionCorta:
-      "Marca francesa sinónimo de seguridad y longevidad. La estrella de los neumáticos premium.",
-    descripcionLarga:
-      "Michelin fue fundada en Clermont-Ferrand, Francia en 1889. Inventora del neumático radial y de la guía gastronómica que lleva su nombre, Michelin es sinónimo de innovación y seguridad. Sus neumáticos son reconocidos por su excepcional durabilidad y eficiencia en consumo de combustible.",
-    especialidad: ["Seguridad", "Longevidad", "Eficiencia", "Premium"],
-    logoFile: "",
+    logoFile: "/images/marcas/dunlop.png",
   },
   {
     slug: "continental",
     nombre: "Continental",
     paisOrigen: "Alemania",
     fundacion: "1871",
+    categorias: ["Auto"],
     descripcionCorta:
-      "Ingeniería alemana aplicada a neumáticos de precisión para exigentes.",
+      "Ingeniería alemana aplicada a neumáticos de precisión para conductores exigentes.",
     descripcionLarga:
-      "Continental fue fundada en Hannover, Alemania en 1871. Es uno de los mayores fabricantes de neumáticos del mundo y proveedor clave de la industria automotriz europea. Sus neumáticos son reconocidos por precisión de manejo, frenado en mojado y tecnología de punta aplicada a seguridad vial.",
+      "Continental fue fundada en Hannover, Alemania en 1871. Es uno de los mayores fabricantes de neumáticos del mundo y proveedor clave de la industria automotriz europea. Reconocidos por precisión de manejo y frenado en mojado.",
     especialidad: ["Ingeniería alemana", "Frenado", "Precisión", "Seguridad"],
-    logoFile: "",
+    logoFile: "/images/marcas/continental.png",
   },
   {
-    slug: "hankook",
-    nombre: "Hankook",
-    paisOrigen: "Corea del Sur",
-    fundacion: "1941",
+    slug: "falken",
+    nombre: "Falken",
+    paisOrigen: "Japón",
+    fundacion: "1983",
+    categorias: ["Auto"],
     descripcionCorta:
-      "Tecnología coreana de primer nivel. Calidad premium a precio accesible.",
+      "Tecnología japonesa de alto rendimiento con presencia en los principales campeonatos de automovilismo.",
     descripcionLarga:
-      "Hankook fue fundada en Corea del Sur en 1941 y hoy es el séptimo fabricante de neumáticos más grande del mundo. Proveedor oficial de la Fórmula E y de varios campeonatos europeos, Hankook ofrece tecnología de primer nivel a precios más accesibles que las marcas europeas tradicionales.",
-    especialidad: ["Tecnología coreana", "Precio-calidad", "Fórmula E", "Sport"],
-    logoFile: "",
+      "Falken es una marca japonesa fundada en 1983, subsidiaria de Sumitomo Rubber Industries. Presente en el campeonato de drift D1 Grand Prix y en las 24 Horas de Nürburgring, Falken combina tecnología de competición con neumáticos para uso diario de excelente relación precio-calidad.",
+    especialidad: ["Performance", "Sport", "Tecnología japonesa", "Precio-calidad"],
+    logoFile: "/images/marcas/falken.png",
   },
   {
-    slug: "maxxis",
-    nombre: "Maxxis",
-    paisOrigen: "Taiwán",
-    fundacion: "1967",
+    slug: "corven",
+    nombre: "Corven",
+    paisOrigen: "Argentina",
+    fundacion: "1995",
+    categorias: ["Auto", "Camión"],
     descripcionCorta:
-      "Especialista en neumáticos para todo terreno, motos y aplicaciones extremas.",
+      "La marca nacional con mejor relación precio-calidad para autos y vehículos de carga.",
     descripcionLarga:
-      "Maxxis fue fundada en Taiwán en 1967 y se convirtió en referente mundial en neumáticos para usos extremos. Especialmente reconocida en el mundo del mountain bike, motocross y off-road, Maxxis también ofrece una sólida línea de neumáticos para autos y SUV con excelente desempeño en todo terreno.",
-    especialidad: ["Off-road", "All terrain", "Motos", "SUV"],
-    logoFile: "",
+      "Corven es una marca argentina fundada en 1995 referente del mercado local gracias a su excelente relación precio-calidad. Ofrece líneas para vehículos particulares y una completa gama para camiones y transporte de carga, especialmente desarrolladas para las condiciones de las rutas argentinas.",
+    especialidad: ["Precio-calidad", "Mercado local", "Camión", "Rutas argentinas"],
+    logoFile: "/images/marcas/corven.png",
+  },
+  {
+    slug: "chaoyang",
+    nombre: "Chao Yang",
+    paisOrigen: "China",
+    fundacion: "1958",
+    categorias: ["Auto"],
+    descripcionCorta:
+      "Marca china con décadas de experiencia fabricando neumáticos de calidad a precio accesible.",
+    descripcionLarga:
+      "Chao Yang es una marca china fundada en 1958 con amplia distribución en América Latina. Ofrece neumáticos de calidad comprobada para vehículos particulares con una excelente relación precio-calidad, siendo una opción inteligente para el conductor que busca durabilidad sin pagar de más.",
+    especialidad: ["Precio accesible", "Durabilidad", "Amplia distribución", "Calidad-precio"],
+    logoFile: "/images/marcas/chaoyang.png",
+  },
+  {
+    slug: "cargopower",
+    nombre: "Cargo Power",
+    paisOrigen: "China",
+    fundacion: "2001",
+    categorias: ["Camión"],
+    descripcionCorta:
+      "Especialista en neumáticos para vehículos de carga pesada y transporte.",
+    descripcionLarga:
+      "Cargo Power es una marca especializada en neumáticos para camiones, ómnibus y vehículos de carga pesada. Con diseños específicos para las exigencias del transporte de larga distancia, ofrece durabilidad y resistencia en rutas de todo tipo.",
+    especialidad: ["Carga pesada", "Transporte", "Larga distancia", "Camión"],
+    logoFile: "/images/marcas/cargopower.png",
+  },
+  {
+    slug: "westlake",
+    nombre: "Westlake",
+    paisOrigen: "China",
+    fundacion: "1988",
+    categorias: ["Camión"],
+    descripcionCorta:
+      "Neumáticos para camiones y transporte pesado con excelente rendimiento en ruta.",
+    descripcionLarga:
+      "Westlake es una marca china especializada en neumáticos para vehículos comerciales y de carga. Reconocida por su durabilidad en condiciones exigentes de transporte, ofrece soluciones para camiones de todo tipo con una relación precio-rendimiento difícil de superar.",
+    especialidad: ["Camión", "Carga pesada", "Transporte", "Durabilidad"],
+    logoFile: "/images/marcas/westlake.png",
+  },
+  {
+    slug: "seat",
+    nombre: "Seat Agrícola",
+    paisOrigen: "Argentina",
+    fundacion: "1970",
+    categorias: ["Agrícola"],
+    descripcionCorta:
+      "Neumáticos agrícolas para maquinaria de campo. Especialista en el mercado argentino.",
+    descripcionLarga:
+      "Seat Agrícola es una marca especializada en neumáticos para maquinaria agrícola, con amplia distribución en el mercado argentino. Sus productos están diseñados para las condiciones de los campos locales, ofreciendo tracción y durabilidad en todo tipo de terreno agrícola.",
+    especialidad: ["Agrícola", "Maquinaria de campo", "Mercado local", "Tracción"],
+    logoFile: "/images/marcas/seat.png",
   },
 ];
 
-export const MARCAS_POPULARES_SLUGS = ["pirelli", "dunlop", "bridgestone", "goodyear"] as const;
+export const MARCAS_POPULARES_SLUGS = ["pirelli", "dunlop", "continental", "falken"] as const;

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import SectionWatermark from "@/components/shared/SectionWatermark";
+import TireTrack from "@/components/shared/TireTrack";
 
 type FaqItem = {
   pregunta: string;
@@ -45,9 +47,11 @@ export default function FaqHome() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
-    <section className="w-full bg-[var(--color-navy)]">
-      <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-8">
-        <header className="mb-12 text-center">
+    <section className="relative w-full overflow-hidden bg-[var(--color-navy)]">
+      <TireTrack />
+      <SectionWatermark />
+      <div className="relative z-10 mx-auto max-w-[1280px] px-6 py-16 md:px-8">
+        <header className="mb-8 text-center">
           <h2 className="font-condensed text-[clamp(28px,4vw,40px)] font-black uppercase leading-[1.1] text-white">
             Preguntas <span className="text-[#E84E0F]">Frecuentes</span>
           </h2>

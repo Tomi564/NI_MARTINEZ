@@ -5,6 +5,8 @@ import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import PromoBand from "@/components/layout/PromoBand";
+import PageTransition from "@/components/shared/PageTransition";
+import ScrollProgress from "@/components/shared/ScrollProgress";
 import PromoPopup from "@/components/shared/PromoPopup";
 import PromoToast from "@/components/shared/PromoToast";
 import WhatsAppButton from "@/components/shared/WhatsAppButton";
@@ -28,13 +30,13 @@ export const metadata: Metadata = {
   ...(metadataBase ? { metadataBase } : {}),
   title: "Neumáticos Importados | Compra Online — Envío a Todo Argentina",
   description:
-    "Comprá neumáticos importados online con envío a todo Argentina. Pirelli, Dunlop, Bridgestone, Corven y más. Hasta 12 cuotas sin interés vía Mercado Pago.",
+    "Comprá neumáticos importados online con envío a todo Argentina. Pirelli, Dunlop, Continental, Falken, Corven y más. Hasta 12 cuotas sin interés vía Mercado Pago.",
   keywords:
-    "neumáticos importados, cubiertas online, neumáticos Argentina, Pirelli, Dunlop, Bridgestone",
+    "neumáticos importados, cubiertas online, neumáticos Argentina, Pirelli, Dunlop, Continental, Falken",
   openGraph: {
     title: "Neumáticos Importados | Compra Online — Envío a Todo Argentina",
     description:
-      "Comprá neumáticos importados online con envío a todo Argentina. Pirelli, Dunlop, Bridgestone, Corven y más. Hasta 12 cuotas sin interés vía Mercado Pago.",
+      "Comprá neumáticos importados online con envío a todo Argentina. Pirelli, Dunlop, Continental, Falken, Corven y más. Hasta 12 cuotas sin interés vía Mercado Pago.",
   },
 };
 
@@ -55,13 +57,16 @@ export default function RootLayout({
       className={`${saira.variable} ${sairaCondensed.variable}`}
     >
       <body className="font-sans bg-gray-bg text-text-primary">
+        <ScrollProgress />
         <header className="sticky top-0 z-50 bg-navy">
           <PromoBand />
           <Suspense fallback={<NavbarFallback />}>
             <Navbar />
           </Suspense>
         </header>
-        <main className="w-full">{children}</main>
+        <main className="w-full">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <WhatsAppButton />
         <PromoPopup />
         <PromoToast />
