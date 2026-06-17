@@ -3,8 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-export default function TireTrack() {
-  const [show, setShow] = useState(false);
+function TireTrackGraphic() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -14,18 +13,8 @@ export default function TireTrack() {
   const pathLength = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
   const opacity = useTransform(scrollYProgress, [0, 0.1, 0.8, 1], [0, 0.12, 0.12, 0]);
 
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px) and (hover: hover)");
-    const onChange = () => setShow(mq.matches);
-    onChange();
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
-
-  if (!show) return null;
-
   return (
-    <div ref={ref} className="pointer-events-none absolute inset-0 overflow-hidden max-md:hidden">
+    <div ref={ref} className="pointer-events-none absolute inset-0 overflow-hidden">
       <motion.svg
         className="absolute right-0 top-0 h-full w-[160px]"
         viewBox="0 0 120 800"
@@ -51,4 +40,20 @@ export default function TireTrack() {
       </motion.svg>
     </div>
   );
+}
+
+export default function TireTrack() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px) and (hover: hover)");
+    const onChange = () => setShow(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  if (!show) return null;
+
+  return <TireTrackGraphic />;
 }

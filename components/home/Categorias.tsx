@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import FadeInView from "@/components/shared/FadeInView";
-import SectionWatermark from "@/components/shared/SectionWatermark";
 import SectionTitle from "@/components/shared/SectionTitle";
 import TireTrack from "@/components/shared/TireTrack";
 
@@ -50,11 +49,10 @@ export default function Categorias() {
   return (
     <section className="relative w-full overflow-hidden bg-[var(--color-navy)]">
       <TireTrack />
-      <SectionWatermark />
       <div className="relative z-10 mx-auto max-w-[1280px] px-6 py-12 md:px-8 md:py-16">
         <SectionTitle title="Buscá por " highlight="tipo de vehículo" light />
 
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           {categorias.map((categoria, index) => (
             <FadeInView key={categoria.id} delay={index * 0.08} direction="up">
               <Link href={categoria.href} className="block">

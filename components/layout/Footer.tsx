@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import BrandLogo from "@/components/layout/BrandLogo";
 
 type FooterLink = { label: string; href: string };
@@ -22,7 +22,7 @@ const marcasLinks: FooterLink[] = [
   { label: "Continental", href: "/marcas/continental" },
   { label: "Falken", href: "/marcas/falken" },
   { label: "Corven", href: "/marcas/corven" },
-  { label: "Ver todas →", href: "/marcas" },
+  { label: "Ver todas", href: "/marcas" },
 ];
 
 const infoLinks: FooterLink[] = [
@@ -34,10 +34,23 @@ const infoLinks: FooterLink[] = [
   { label: "Contacto", href: "/contacto" },
 ];
 
+const infoLinksDesktop: FooterLink[] = infoLinks.filter((l) => l.label !== "Contacto");
+
+const contactoLinks: FooterLink[] = [
+  { label: "Contacto", href: "/contacto" },
+  { label: "Envíos y plazos", href: "/envios" },
+];
+
 const legalLinks: FooterLink[] = [
   { label: "Términos y condiciones", href: "/terminos" },
   { label: "Política de privacidad", href: "/privacidad" },
   { label: "Datos fiscales (AFIP)", href: "#" },
+];
+
+const accordionSections = [
+  { title: "Catálogo", links: catalogoLinks },
+  { title: "Marcas", links: marcasLinks },
+  { title: "Información", links: infoLinks },
 ];
 
 export default function Footer() {
@@ -51,45 +64,103 @@ export default function Footer() {
         }}
       />
       <footer className="w-full bg-navy-dark">
-        <div className="mx-auto max-w-[1280px] px-5 pb-6 pt-10 md:px-8">
-          <div className="mb-6 grid grid-cols-2 gap-6 border-b border-[var(--color-footer-border)] pb-6 md:grid-cols-4">
-            <div className="col-span-2 md:col-span-1">
-              <BrandLogo variant="footer" className="mb-3" />
+        <div className="mx-auto max-w-[1280px] px-6 pb-10 pt-10 md:px-8 md:pb-6">
+          {/* Mobile — estilo Dunlop: logo + acordeón + redes + legal */}
+          <div className="md:hidden">
+            <BrandLogo variant="footer" className="mb-8" />
 
-              <p
-                className="mb-4 max-w-[200px] text-[11px] leading-[1.6]"
-                style={{ color: "#7A9AAA" }}
+            <FooterAccordion sections={accordionSections} />
+
+            <div className="mt-8 flex items-center gap-5">
+              <SocialIcon
+                href="https://www.instagram.com/neumaticosimportados.sla/"
+                label="Instagram"
+                plain
               >
-                Venta online de neumáticos importados con envío a todo Argentina.
-                Originales, certificados y al mejor precio.
-              </p>
+                <InstagramIcon />
+              </SocialIcon>
+              <SocialIcon href="#" label="Facebook" plain>
+                <FacebookIcon />
+              </SocialIcon>
+              <SocialIcon href="#" label="TikTok" plain>
+                <TiktokIcon />
+              </SocialIcon>
+            </div>
 
-              <div className="flex items-center gap-2">
-                <SocialIcon href="https://www.instagram.com/neumaticosimportados.sla/" label="Instagram">
-                  <InstagramIcon />
-                </SocialIcon>
-                <SocialIcon href="#" label="Facebook">
-                  <FacebookIcon />
-                </SocialIcon>
-                <SocialIcon href="#" label="TikTok">
-                  <TiktokIcon />
-                </SocialIcon>
+            <nav className="mt-8 flex flex-col gap-3" aria-label="Enlaces legales">
+              {legalLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm text-white transition-colors hover:text-[var(--color-orange)]"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            <p className="mt-6 text-xs leading-relaxed text-white/50">
+              © 2026 Neumáticos Importados. Todos los derechos reservados.
+            </p>
+          </div>
+
+          {/* Desktop — estilo Dunlop: logo + columnas + legal centrado */}
+          <div className="hidden md:block">
+            <BrandLogo variant="footer" className="mb-10" />
+
+            <div className="grid grid-cols-4 gap-8 lg:gap-10">
+              <FooterColumnDunlop title="Catálogo" links={catalogoLinks} />
+              <FooterColumnDunlop title="Marcas" links={marcasLinks} />
+              <FooterColumnDunlop title="Información" links={infoLinksDesktop} />
+              <div>
+                <FooterColumnDunlop title="Contacto" links={contactoLinks} />
+                <div className="mt-8">
+                  <h3 className="text-sm font-bold uppercase tracking-wide text-[var(--color-orange)]">
+                    Redes sociales
+                  </h3>
+                  <div className="mb-4 mt-3 border-b border-white/30" />
+                  <div className="flex items-center gap-5">
+                    <SocialIcon
+                      href="https://www.instagram.com/neumaticosimportados.sla/"
+                      label="Instagram"
+                      plain
+                    >
+                      <InstagramIcon />
+                    </SocialIcon>
+                    <SocialIcon href="#" label="Facebook" plain>
+                      <FacebookIcon />
+                    </SocialIcon>
+                    <SocialIcon href="#" label="TikTok" plain>
+                      <TiktokIcon />
+                    </SocialIcon>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <FooterColumn title="Catálogo" links={catalogoLinks} />
-            <FooterColumn title="Marcas" links={marcasLinks} />
-            <FooterColumn title="Información" links={infoLinks} />
-          </div>
-
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <p className="text-[10px] text-[var(--color-footer-legal)]">
-              © 2026 Neumáticos Importados. Todos los derechos reservados.
-            </p>
-            <div className="flex flex-wrap items-center gap-4">
-              {legalLinks.map((link) => (
-                <FooterLink key={link.label} href={link.href} label={link.label} />
-              ))}
+            <div className="mt-12 text-center">
+              <nav
+                className="mb-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs text-white/70"
+                aria-label="Enlaces legales"
+              >
+                {legalLinks.map((link, index) => (
+                  <span key={link.label} className="inline-flex items-center gap-2">
+                    {index > 0 && <span className="text-white/30" aria-hidden>|</span>}
+                    <Link
+                      href={link.href}
+                      className="transition-colors hover:text-[var(--color-orange)]"
+                    >
+                      {link.label}
+                    </Link>
+                  </span>
+                ))}
+              </nav>
+              <p className="text-xs text-white/70">
+                © 2026 Neumáticos Importados. Todos los derechos reservados.
+              </p>
+              <p className="mt-2 text-xs text-white/50">
+                Venta online de neumáticos importados con envío a todo Argentina.
+              </p>
             </div>
           </div>
         </div>
@@ -98,61 +169,84 @@ export default function Footer() {
   );
 }
 
-function FooterLink({ href, label }: { href: string; label: string }) {
+function FooterAccordion({
+  sections,
+}: {
+  sections: { title: string; links: FooterLink[] }[];
+}) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
-    <motion.div
-      whileHover="hover"
-      initial="rest"
-      variants={{ rest: {}, hover: {} }}
-      className="inline-flex"
-    >
-      <Link
-        href={href}
-        className="group flex items-center gap-1 text-[10px] text-[var(--color-footer-legal)] transition-colors duration-150 hover:text-[var(--color-orange)]"
-      >
-        {label}
-        <motion.span
-          className="text-[11px] text-orange"
-          variants={{ rest: { opacity: 0, x: -4 }, hover: { opacity: 1, x: 0 } }}
-          transition={{ duration: 0.15 }}
-        >
-          →
-        </motion.span>
-      </Link>
-    </motion.div>
+    <div className="border-t border-white/20">
+      {sections.map((section, index) => {
+        const open = openIndex === index;
+
+        return (
+          <div key={section.title} className="border-b border-white/20">
+            <button
+              type="button"
+              onClick={() => setOpenIndex(open ? null : index)}
+              aria-expanded={open}
+              className="flex w-full items-center justify-between py-4 text-left"
+            >
+              <span className="text-[15px] font-bold uppercase italic tracking-[0.04em] text-[var(--color-orange)]">
+                {section.title}
+              </span>
+              <span className="text-2xl font-light leading-none text-white" aria-hidden>
+                {open ? "−" : "+"}
+              </span>
+            </button>
+
+            <AnimatePresence initial={false}>
+              {open && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                  className="overflow-hidden"
+                >
+                  <ul className="m-0 list-none space-y-3 pb-5 pl-0">
+                    {section.links.map((link) => (
+                      <li key={link.label}>
+                        <Link
+                          href={link.href}
+                          className="text-sm text-white transition-colors hover:text-[var(--color-orange)]"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
-function FooterColumn({ title, links }: { title: string; links: FooterLink[] }) {
+function FooterColumnDunlop({ title, links }: { title: string; links: FooterLink[] }) {
   return (
     <div>
-      <h3 className="mb-3 text-[10px] font-bold uppercase tracking-[0.12em] text-white">
+      <h3 className="text-sm font-bold uppercase tracking-wide text-[var(--color-orange)]">
         {title}
       </h3>
-      {links.map((link) => (
-        <motion.div
-          key={link.label}
-          whileHover="hover"
-          initial="rest"
-          variants={{ rest: {}, hover: {} }}
-          className="mb-[7px]"
-        >
-          <Link
-            href={link.href}
-            className="group flex items-center gap-1 text-[11px] transition-colors duration-150 hover:text-[var(--color-orange)]"
-            style={{ color: "#8AAABB" }}
-          >
-            {link.label}
-            <motion.span
-              className="text-[11px] text-orange"
-              variants={{ rest: { opacity: 0, x: -4 }, hover: { opacity: 1, x: 0 } }}
-              transition={{ duration: 0.15 }}
+      <div className="mb-4 mt-3 border-b border-white/30" />
+      <ul className="m-0 list-none space-y-2.5 p-0">
+        {links.map((link) => (
+          <li key={link.label}>
+            <Link
+              href={link.href}
+              className="text-sm text-white transition-colors hover:text-[var(--color-orange)]"
             >
-              →
-            </motion.span>
-          </Link>
-        </motion.div>
-      ))}
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -161,10 +255,12 @@ function SocialIcon({
   href,
   label,
   children,
+  plain = false,
 }: {
   href: string;
   label: string;
   children: ReactNode;
+  plain?: boolean;
 }) {
   return (
     <motion.a
@@ -172,8 +268,12 @@ function SocialIcon({
       target="_blank"
       rel="noreferrer"
       aria-label={label}
-      className="inline-flex h-8 w-8 items-center justify-center rounded-[4px] bg-[var(--color-footer-border)] text-[var(--color-footer-col-link)]"
-      whileHover={{ scale: 1.15, color: "#E84E0F" }}
+      className={
+        plain
+          ? "inline-flex text-white transition-colors hover:text-[var(--color-orange)]"
+          : "inline-flex h-8 w-8 items-center justify-center rounded-[4px] bg-[var(--color-footer-border)] text-[var(--color-footer-col-link)]"
+      }
+      whileHover={plain ? undefined : { scale: 1.15, color: "#E84E0F" }}
       transition={{ duration: 0.15 }}
     >
       {children}
@@ -183,7 +283,7 @@ function SocialIcon({
 
 function InstagramIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" strokeWidth="2" />
       <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="2" />
       <circle cx="17" cy="7" r="1" fill="currentColor" />
@@ -193,17 +293,31 @@ function InstagramIcon() {
 
 function FacebookIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M14 8H16V5H14C11.8 5 10 6.8 10 9V11H8V14H10V19H13V14H15.5L16 11H13V9C13 8.4 13.4 8 14 8Z" fill="currentColor" />
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M14 8H16V5H14C11.8 5 10 6.8 10 9V11H8V14H10V19H13V14H15.5L16 11H13V9C13 8.4 13.4 8 14 8Z"
+        fill="currentColor"
+      />
     </svg>
   );
 }
 
 function TiktokIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M14 6V14.8C14 16.6 12.5 18 10.7 18C8.9 18 7.5 16.6 7.5 14.8C7.5 13.1 8.9 11.7 10.7 11.7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M14 6C14.7 7.5 16 8.4 17.5 8.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M14 6V14.8C14 16.6 12.5 18 10.7 18C8.9 18 7.5 16.6 7.5 14.8C7.5 13.1 8.9 11.7 10.7 11.7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14 6C14.7 7.5 16 8.4 17.5 8.5"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }

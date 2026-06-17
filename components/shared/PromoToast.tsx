@@ -71,7 +71,7 @@ export default function PromoToast() {
           </h2>
 
           <p className="mt-1 text-[12px] font-normal leading-[1.5] text-[#8FAABB]">
-            Con todas las tarjetas vía Mercado Pago. Sin costo adicional.
+            Con tarjetas Naranja y todas las tarjetas vía Mercado Pago.
           </p>
 
           <Link

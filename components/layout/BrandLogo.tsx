@@ -29,11 +29,14 @@ type BrandLogoProps = {
 
 export default function BrandLogo({ variant, className = "" }: BrandLogoProps) {
   const { width, height, scale, offsetX, offsetY, priority } = VARIANTS[variant];
+  const isNav = variant === "nav";
 
   return (
     <span
-      className={`relative block shrink-0 overflow-hidden ${className}`}
-      style={{ width, height }}
+      className={`relative block shrink-0 overflow-hidden ${
+        isNav ? "h-[36px] w-[209px] md:h-[44px] md:w-[255px]" : ""
+      } ${className}`}
+      style={isNav ? undefined : { width, height }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -45,7 +48,7 @@ export default function BrandLogo({ variant, className = "" }: BrandLogoProps) {
         fetchPriority={priority ? "high" : "auto"}
         className="absolute max-w-none"
         style={{
-          height,
+          height: isNav ? "100%" : height,
           width: "auto",
           left: offsetX,
           top: "50%",

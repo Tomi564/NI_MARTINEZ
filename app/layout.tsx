@@ -38,6 +38,11 @@ export const metadata: Metadata = {
     description:
       "Comprá neumáticos importados online con envío a todo Argentina. Pirelli, Dunlop, Continental, Falken, Corven y más. Hasta 12 cuotas sin interés vía Mercado Pago.",
   },
+  icons: {
+    icon: "/images/favicon.png",
+    shortcut: "/images/favicon.png",
+    apple: "/images/favicon.png",
+  },
 };
 
 function NavbarFallback() {

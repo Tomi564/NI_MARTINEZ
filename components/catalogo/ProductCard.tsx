@@ -92,14 +92,17 @@ export default function ProductCard({ producto, className }: ProductCardProps) {
 
                 <div className="flex min-h-[1.5rem] items-end">
                   {producto.cuotas && cuotaValue ? (
-                    <p className="text-[10px] font-semibold text-[#1A6E32]">
-                      {producto.cuotas}x ${cuotaValue.toLocaleString("es-AR")} sin interés
+                    <p className="mb-2 text-[10px] font-semibold leading-tight text-[#1A6E32]">
+                      <span className="block">{producto.cuotas} cuotas de</span>
+                      <span className="block font-bold">
+                        ${cuotaValue.toLocaleString("es-AR")}
+                      </span>
                     </p>
                   ) : null}
                 </div>
 
                 <motion.span
-                  className="mt-2 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-[4px] bg-navy px-2 py-[8px] text-[10px] font-bold uppercase tracking-[0.07em] text-white"
+                  className="mt-2 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-[4px] bg-navy px-2 py-[10px] text-[10px] font-bold uppercase tracking-[0.07em] text-white md:py-[7px]"
                   initial="rest"
                   whileHover="hover"
                   variants={{

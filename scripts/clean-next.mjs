@@ -7,7 +7,7 @@ const cacheOnly = process.argv.includes("--cache-only");
 
 function remove(path) {
   if (existsSync(path)) {
-    rmSync(path, { recursive: true, force: true });
+    rmSync(path, { recursive: true, force: true, maxRetries: 3, retryDelay: 100 });
   }
 }
 

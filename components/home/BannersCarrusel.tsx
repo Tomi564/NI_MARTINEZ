@@ -1,53 +1,38 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
-import MagneticButton from "@/components/shared/MagneticButton";
 import { useCallback, useEffect, useState } from "react";
 
-interface BannerItem {
-  id: number;
-  tag: string;
-  titulo: string;
-  subtitulo: string;
-  cta: string;
-  href: string;
-  color: string;
-  acento: string;
-}
-
-const banners: BannerItem[] = [
+const banners = [
   {
     id: 1,
-    tag: "MERCADO PAGO",
-    titulo: "Hasta 12 cuotas\nsin interés",
-    subtitulo: "Con todas las tarjetas. Pagá cómodo tu próximo neumático.",
-    cta: "Ver condiciones",
-    href: "/envios",
-    color: "#1A2E44",
-    acento: "#E84E0F",
+    monitor: "/images/banners/banner-monitor-1.webp",
+    tablet: "/images/banners/banner-tablet-1.webp",
+    celular: "/images/banners/banner-celular-1.webp",
+    alt: "Promoción 1",
   },
   {
     id: 2,
-    tag: "PROMO ESPECIAL",
-    titulo: "Comprá 4\ny pagá 3",
-    subtitulo: "Válido en medidas seleccionadas. Stock limitado.",
-    cta: "Ver productos",
-    href: "/catalogo?badge=oferta",
-    color: "#0D1B2A",
-    acento: "#E84E0F",
+    monitor: "/images/banners/banner-monitor-2.webp",
+    tablet: "/images/banners/banner-tablet-2.webp",
+    celular: "/images/banners/banner-celular-2.webp",
+    alt: "Promoción 2",
   },
   {
     id: 3,
-    tag: "ENVÍO GRATIS",
-    titulo: "A todo\nel país",
-    subtitulo: "Sin mínimo de compra. Entrega en 24 a 72hs hábiles.",
-    cta: "Cómo funciona",
-    href: "/envios",
-    color: "#1A2E44",
-    acento: "#E84E0F",
+    monitor: "/images/banners/banner-monitor-3.webp",
+    tablet: "/images/banners/banner-tablet-3.webp",
+    celular: "/images/banners/banner-celular-3.webp",
+    alt: "Promoción 3",
   },
-];
+  {
+    id: 4,
+    monitor: "/images/banners/banner-monitor-4.webp",
+    tablet: "/images/banners/banner-tablet-4.webp",
+    celular: "/images/banners/banner-celular-4.webp",
+    alt: "Promoción 4",
+  },
+] as const;
 
 const AUTO_INTERVAL_MS = 4000;
 
@@ -62,14 +47,6 @@ export default function BannersCarrusel() {
     setTimerKey((k) => k + 1);
   }, []);
 
-  const goNext = useCallback(() => {
-    goTo((activeIndex + 1) % banners.length);
-  }, [activeIndex, goTo]);
-
-  const goPrev = useCallback(() => {
-    goTo((activeIndex - 1 + banners.length) % banners.length);
-  }, [activeIndex, goTo]);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % banners.length);
@@ -79,17 +56,7 @@ export default function BannersCarrusel() {
   }, [timerKey]);
 
   return (
-    <motion.section
-      className="group relative h-[200px] w-full overflow-hidden transition-colors duration-[400ms] md:h-[160px]"
-      style={{ backgroundColor: activeBanner.color }}
-      whileHover="hover"
-    >
-      <motion.div
-        className="pointer-events-none absolute inset-0"
-        style={{ backgroundColor: activeBanner.color }}
-        variants={{ hover: { scale: 1.02 } }}
-        transition={{ duration: 0.4 }}
-      />
+    <section className="group relative w-full overflow-hidden bg-navy">
       <AnimatePresence mode="wait">
         <motion.div
           key={activeBanner.id}
@@ -97,59 +64,19 @@ export default function BannersCarrusel() {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.35, ease: "easeInOut" }}
-          className="absolute inset-0 z-10"
+          className="relative w-full [aspect-ratio:4/3] md:[aspect-ratio:768/360] lg:[aspect-ratio:1280/400]"
         >
-          <div className="mx-auto flex h-full max-w-[1280px] flex-col justify-center px-6 py-6 md:flex-row md:items-center md:px-8">
-            <div>
-              <span
-                className="mb-2 inline-block rounded-[2px] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em]"
-                style={{
-                  backgroundColor: "rgba(232, 78, 15, 0.2)",
-                  color: activeBanner.acento,
-                }}
-              >
-                {activeBanner.tag}
-              </span>
-              <h2 className="whitespace-pre-line font-condensed text-[26px] font-black uppercase leading-none text-white md:text-[32px]">
-                {activeBanner.titulo}
-              </h2>
-              <p className="mt-2 max-w-[400px] text-[13px] font-normal text-[#8FAABB]">
-                {activeBanner.subtitulo}
-              </p>
-            </div>
-
-            <div className="mt-4 shrink-0 md:ml-auto md:mt-0">
-              <MagneticButton>
-                <Link
-                  href={activeBanner.href}
-                  className="inline-block rounded-[3px] bg-orange px-6 py-[10px] text-[12px] font-bold uppercase tracking-[0.06em] text-white transition-colors duration-150 hover:bg-[var(--color-orange-hover)]"
-                >
-                  {activeBanner.cta}
-                </Link>
-              </MagneticButton>
-            </div>
-          </div>
+          <BannerSlide
+            monitor={activeBanner.monitor}
+            tablet={activeBanner.tablet}
+            celular={activeBanner.celular}
+            alt={activeBanner.alt}
+            priority={activeIndex === 0}
+          />
         </motion.div>
       </AnimatePresence>
 
-      <button
-        type="button"
-        onClick={goPrev}
-        aria-label="Banner anterior"
-        className="absolute left-4 top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[rgba(255,255,255,0.1)] text-white transition-colors hover:bg-[rgba(255,255,255,0.2)] md:flex"
-      >
-        <ChevronIcon direction="left" />
-      </button>
-      <button
-        type="button"
-        onClick={goNext}
-        aria-label="Banner siguiente"
-        className="absolute right-4 top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[rgba(255,255,255,0.1)] text-white transition-colors hover:bg-[rgba(255,255,255,0.2)] md:flex"
-      >
-        <ChevronIcon direction="right" />
-      </button>
-
-      <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-2">
+      <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
         {banners.map((banner, index) => (
           <button
             key={banner.id}
@@ -162,27 +89,40 @@ export default function BannersCarrusel() {
               layout
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
               className={`block h-2 rounded-full ${
-                index === activeIndex ? "bg-orange" : "bg-[rgba(255,255,255,0.3)]"
+                index === activeIndex ? "bg-orange" : "bg-[rgba(255,255,255,0.4)]"
               }`}
               style={{ width: index === activeIndex ? 24 : 8 }}
             />
           </button>
         ))}
       </div>
-    </motion.section>
+    </section>
   );
 }
 
-function ChevronIcon({ direction }: { direction: "left" | "right" }) {
+function BannerSlide({
+  monitor,
+  tablet,
+  celular,
+  alt,
+  priority = false,
+}: {
+  monitor: string;
+  tablet: string;
+  celular: string;
+  alt: string;
+  priority?: boolean;
+}) {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path
-        d={direction === "left" ? "M15 6L9 12L15 18" : "M9 6L15 12L9 18"}
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+    <picture className="block h-full w-full">
+      <source media="(max-width: 767px)" srcSet={celular} type="image/webp" />
+      <source media="(max-width: 1023px)" srcSet={tablet} type="image/webp" />
+      <img
+        src={monitor}
+        alt={alt}
+        className="block h-full w-full object-cover object-center"
+        loading={priority ? "eager" : "lazy"}
       />
-    </svg>
+    </picture>
   );
 }

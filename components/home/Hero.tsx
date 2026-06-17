@@ -1,120 +1,113 @@
-"use client";
+'use client'
 
-import { motion, type Variants } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import MagneticButton from "@/components/shared/MagneticButton";
-import WipeTitle from "@/components/shared/WipeTitle";
+import { AnimatePresence, motion } from 'framer-motion'
+import { useCallback, useEffect, useState } from 'react'
 
-const containerVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
-};
+const slides = [
+  {
+    id: 1,
+    monitor: '/images/hero/hero-monitor-1.webp',
+    tablet:  '/images/hero/hero-tablet-1.webp',
+    celular: '/images/hero/hero-celular-1.webp',
+    alt: 'Neumáticos Importados - Banner 1'
+  },
+  {
+    id: 2,
+    monitor: '/images/hero/hero-monitor-2.webp',
+    tablet:  '/images/hero/hero-tablet-2.webp',
+    celular: '/images/hero/hero-celular-2.webp',
+    alt: 'Neumáticos Importados - Banner 2'
+  },
+  {
+    id: 3,
+    monitor: '/images/hero/hero-monitor-3.webp',
+    tablet:  '/images/hero/hero-tablet-3.webp',
+    celular: '/images/hero/hero-celular-3.webp',
+    alt: 'Neumáticos Importados - Banner 3'
+  },
+  {
+    id: 4,
+    monitor: '/images/hero/hero-monitor-4.webp',
+    tablet:  '/images/hero/hero-tablet-4.webp',
+    celular: '/images/hero/hero-celular-4.webp',
+    alt: 'Neumáticos Importados - Banner 4'
+  },
+]
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.38, ease: "easeOut" } },
-};
+const AUTO_INTERVAL_MS = 5000
 
 export default function Hero() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [timerKey, setTimerKey] = useState(0)
+
+  const goTo = useCallback((index: number) => {
+    setActiveIndex(index)
+    setTimerKey(k => k + 1)
+  }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex(prev => (prev + 1) % slides.length)
+    }, AUTO_INTERVAL_MS)
+    return () => clearInterval(interval)
+  }, [timerKey])
+
+  const activeSlide = slides[activeIndex]
+
   return (
-    <section className="relative w-full overflow-hidden bg-[var(--color-navy)]">
-      <div className="relative mx-auto h-[clamp(520px,min(56vw,72vh),680px)] w-full min-[1220px]:h-[clamp(580px,52vw,78vh)]">
-        <Image
-          src="/images/heroimg.png"
-          alt="Neumáticos importados"
-          fill
-          priority
-          sizes="100vw"
-          className="object-contain object-center min-[1220px]:object-cover min-[1220px]:object-[center_84%]"
-        />
+    <section className="relative w-full overflow-hidden">
 
-        <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[rgba(13,27,42,0.5)] via-transparent to-[rgba(13,27,42,0.6)]"
-          aria-hidden
-        />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeSlide.id}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="relative w-full
+                     [aspect-ratio:4/3]
+                     md:[aspect-ratio:768/360]
+                     lg:[aspect-ratio:1280/400]"
+        >
+          <picture className="block h-full w-full">
+            <source
+              media="(max-width: 767px)"
+              srcSet={activeSlide.celular}
+              type="image/webp"
+            />
+            <source
+              media="(max-width: 1023px)"
+              srcSet={activeSlide.tablet}
+              type="image/webp"
+            />
+            <img
+              src={activeSlide.monitor}
+              alt={activeSlide.alt}
+              className="block h-full w-full object-cover object-center"
+              loading={activeIndex === 0 ? 'eager' : 'lazy'}
+            />
+          </picture>
+        </motion.div>
+      </AnimatePresence>
 
-        <div className="absolute inset-0 z-10 flex flex-col justify-between px-4 py-6 sm:px-6 sm:py-7 md:px-8 md:py-8">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="pointer-events-auto mx-auto w-full max-w-[1280px] text-center"
-          >
-            <motion.p
-              variants={itemVariants}
-              className="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-orange drop-shadow-sm sm:mb-3 sm:text-[11px]"
-            >
-              ★ Envío a todo Argentina — Stock permanente
-            </motion.p>
-
-            <motion.h1
-              variants={itemVariants}
-              className="mx-auto max-w-[20ch] font-condensed text-[clamp(24px,3.8vw,48px)] font-black uppercase leading-[0.95] tracking-[0.01em] text-white drop-shadow-md sm:max-w-none md:text-[clamp(28px,4vw,52px)]"
-            >
-              <div className="block">
-                <WipeTitle delay={0}>EL NEUMÁTICO</WipeTitle>
-              </div>
-              <div className="block">
-                <WipeTitle delay={0.15}>
-                  <span className="text-orange">IMPORTADO</span>
-                </WipeTitle>
-              </div>
-              <div className="block">
-                <WipeTitle delay={0.3}>QUE TU AUTO</WipeTitle>
-              </div>
-              <div className="block">
-                <WipeTitle delay={0.45}>NECESITA</WipeTitle>
-              </div>
-            </motion.h1>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="pointer-events-auto mx-auto w-full max-w-[1280px] text-center"
-          >
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap justify-center gap-3 sm:gap-4"
-            >
-              <MagneticButton strength={0.12}>
-                <motion.div whileHover="hover" className="inline-block">
-                  <Link
-                    href="/catalogo"
-                    className="inline-flex items-center gap-2 rounded-[3px] bg-orange px-6 py-2.5 font-sans text-[12px] font-extrabold uppercase tracking-[0.07em] text-white shadow-lg transition-colors duration-150 hover:bg-[var(--color-orange-hover)] sm:px-8 sm:py-3 sm:text-[13px]"
-                  >
-                    Ver catálogo
-                    <motion.span
-                      variants={{ hover: { x: 6 } }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      →
-                    </motion.span>
-                  </Link>
-                </motion.div>
-              </MagneticButton>
-              <MagneticButton strength={0.12}>
-                <motion.div whileHover="hover" className="inline-block">
-                  <Link
-                    href="/catalogo?badge=oferta"
-                    className="inline-flex items-center gap-2 rounded-[3px] border-2 border-white/60 bg-[rgba(13,27,42,0.35)] px-6 py-2 font-sans text-[12px] font-bold uppercase tracking-[0.07em] text-white shadow-lg backdrop-blur-sm transition-colors duration-150 hover:border-white sm:px-8 sm:py-[11px] sm:text-[13px]"
-                  >
-                    Ver ofertas
-                    <motion.span
-                      variants={{ hover: { x: 6 } }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      →
-                    </motion.span>
-                  </Link>
-                </motion.div>
-              </MagneticButton>
-            </motion.div>
-          </motion.div>
-        </div>
+      {/* Dots indicadores */}
+      <div className="absolute bottom-3 left-1/2 z-20
+                      -translate-x-1/2 flex items-center gap-2">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => goTo(i)}
+            aria-label={`Ir al slide ${i + 1}`}
+            className={`rounded-full transition-all duration-300 ${
+              i === activeIndex
+                ? 'bg-[var(--color-orange)] w-6 h-2'
+                : 'bg-white/40 w-2 h-2'
+            }`}
+          />
+        ))}
       </div>
+
     </section>
-  );
+  )
 }

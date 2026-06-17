@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import MarcaLogoBox from "@/components/marcas/MarcaLogoBox";
 import PageHeroTitle from "@/components/shared/PageHeroTitle";
 import { marcasData } from "@/lib/marcas-data";
 import { countProductosPorMarca } from "@/lib/marcas";
@@ -40,11 +41,7 @@ export default function MarcasPage() {
                 className="overflow-hidden rounded-[6px] border border-gray-border border-t-[3px] border-t-orange bg-white"
               >
                 <div className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:gap-6">
-                  <div className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-[6px] bg-gray-bg">
-                    <span className="font-condensed text-[34px] font-black leading-none text-[var(--color-logo-muted)]">
-                      {marca.nombre.charAt(0)}
-                    </span>
-                  </div>
+                  <MarcaLogoBox src={marca.logoFile} nombre={marca.nombre} />
 
                   <div className="flex-1">
                     <h2 className="font-condensed text-[22px] font-black uppercase leading-none text-text-primary">

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import MarcaLogoHeader from "@/components/marcas/MarcaLogoHeader";
 import OtraMarcaCard from "@/components/marcas/OtraMarcaCard";
-import SectionWatermark from "@/components/shared/SectionWatermark";
 import ProductGrid from "@/components/catalogo/ProductGrid";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { marcasData } from "@/lib/marcas-data";
@@ -70,7 +69,6 @@ export default function MarcaPage({ params }: MarcaPageProps) {
     <div className="min-h-screen bg-gray-bg">
       {/* Sección 1 — Header */}
       <section className="relative w-full overflow-hidden border-b-[3px] border-orange bg-navy">
-        <SectionWatermark />
         <div className="relative z-10 mx-auto max-w-[1280px] px-5 py-8 md:px-8 md:py-10">
           <nav className="mb-4 flex flex-wrap items-center gap-1 text-[11px] text-[var(--color-text-on-dark)]">
             <Link href="/" className="transition-colors hover:text-white">

@@ -24,7 +24,7 @@ export default function SectionTitle({
 
   return (
     <FadeInView>
-      <div className="mb-6 flex items-end justify-between">
+      <div className="mb-6 flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
         <h2
           className={[
             "font-condensed font-black uppercase leading-none tracking-[0.02em]",

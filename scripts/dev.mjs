@@ -8,28 +8,28 @@ import { join } from "node:path";
 
 const root = process.cwd();
 const nextDir = join(root, ".next");
+const useTurbo = process.argv.includes("--turbo");
 
 function remove(path) {
   if (existsSync(path)) {
-    rmSync(path, { recursive: true, force: true });
+    rmSync(path, { recursive: true, force: true, maxRetries: 3, retryDelay: 100 });
   }
 }
 
 function needsFullClean() {
   if (!existsSync(nextDir)) return false;
 
-  // Artefactos de `next build` — incompatibles con `next dev`
   const productionMarkers = [
     "prerender-manifest.json",
     "export-marker.json",
     "required-server-files.json",
+    "BUILD_ID",
   ];
 
   if (productionMarkers.some((file) => existsSync(join(nextDir, file)))) {
     return true;
   }
 
-  // BUILD_ID de producción suele ser distinto; si hay server/app y fallan chunks, limpiar
   const appBuildManifest = join(nextDir, "app-build-manifest.json");
   const staticChunks = join(nextDir, "static", "chunks");
 
@@ -40,17 +40,40 @@ function needsFullClean() {
   return false;
 }
 
-if (needsFullClean()) {
-  console.log("[dev] Detectada caché de producción o incompleta. Limpiando .next...");
-  remove(nextDir);
-} else if (existsSync(nextDir)) {
-  remove(join(nextDir, "cache"));
+function cleanDevArtifacts() {
+  const partialPaths = [
+    join(nextDir, "cache"),
+    join(nextDir, "static", "webpack"),
+    join(nextDir, "server", "vendor-chunks"),
+  ];
+
+  for (const path of partialPaths) {
+    remove(path);
+  }
 }
 
-const child = spawn("npx", ["next", "dev"], {
+if (needsFullClean()) {
+  console.log("[dev] Caché de producción o incompleta detectada. Limpiando .next...");
+  remove(nextDir);
+} else if (existsSync(nextDir)) {
+  cleanDevArtifacts();
+  console.log("[dev] Caché de desarrollo limpiada (webpack/HMR).");
+}
+
+const nextArgs = ["next", "dev"];
+if (useTurbo) {
+  nextArgs.push("--turbo");
+  console.log("[dev] Usando Turbopack (--turbo).");
+}
+
+const child = spawn("npx", nextArgs, {
   cwd: root,
   stdio: "inherit",
   shell: true,
+  env: {
+    ...process.env,
+    WATCHPACK_POLLING: process.platform === "win32" ? "true" : process.env.WATCHPACK_POLLING,
+  },
 });
 
 child.on("exit", (code) => {

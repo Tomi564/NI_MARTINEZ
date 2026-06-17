@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function Loading() {
   return (
     <div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[var(--color-navy)]"
+      className="flex min-h-[70vh] w-full flex-col items-center justify-center bg-[var(--color-navy)] py-16"
       role="status"
       aria-live="polite"
       aria-label="Cargando"

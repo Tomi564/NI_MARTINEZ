@@ -31,7 +31,7 @@ export default function Marcas() {
         />
 
         <FadeInView delay={0.1}>
-          <div className="mt-5 grid grid-cols-3 items-stretch gap-2 sm:grid-cols-5 md:grid-cols-5">
+          <div className="mt-5 grid grid-cols-2 items-stretch gap-2 sm:grid-cols-3 md:grid-cols-5">
             {marcas.map((marca) => (
               <Link key={marca.id} href={`/marcas/${marca.id}`} className="group flex">
                 <MarcaCard marca={marca} className="w-full" />

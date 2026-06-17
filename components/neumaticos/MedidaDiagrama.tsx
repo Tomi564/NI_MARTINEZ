@@ -7,13 +7,12 @@ type MedidaDiagramaProps = {
 export default function MedidaDiagrama({ ancho, perfil, rodado }: MedidaDiagramaProps) {
   return (
     <svg
-      width="280"
-      height="280"
       viewBox="0 0 280 280"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-label={`Diagrama de medida ${ancho}/${perfil} R${rodado}`}
       role="img"
+      className="mx-auto h-auto w-full max-w-[280px]"
     >
       <circle cx="140" cy="140" r="95" stroke="#0d1b2a" strokeWidth="18" fill="#f0f2f4" />
       <circle cx="140" cy="140" r="55" stroke="#0d1b2a" strokeWidth="4" fill="#ffffff" />

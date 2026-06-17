@@ -14,7 +14,7 @@ export default function PromoBand() {
 
   return (
     <div className="bg-orange py-2 overflow-hidden">
-      <div className="hidden md:flex items-center justify-center gap-3 text-[11px] font-bold uppercase tracking-[0.06em] text-white">
+      <div className="hidden md:flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-[11px] font-bold uppercase tracking-[0.06em] text-white">
         {messages.map((message, index) => (
           <div key={message} className="flex items-center gap-3">
             <span>{message}</span>

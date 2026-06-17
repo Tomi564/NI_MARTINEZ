@@ -118,7 +118,7 @@ export default function Filtros({ initialFilters }: { initialFilters: CatalogoSe
       <button
         type="button"
         onClick={() => setMobileOpen(true)}
-        className="fixed bottom-6 right-4 z-40 rounded-full bg-navy px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.08em] text-white shadow-lg md:hidden"
+        className="fixed bottom-24 right-4 z-40 rounded-full bg-navy px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.08em] text-white shadow-lg md:hidden"
       >
         Filtros
       </button>

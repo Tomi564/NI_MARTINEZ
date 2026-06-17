@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import SectionWatermark from "@/components/shared/SectionWatermark";
 import TireTrack from "@/components/shared/TireTrack";
 
 type FaqItem = {
@@ -49,7 +48,6 @@ export default function FaqHome() {
   return (
     <section className="relative w-full overflow-hidden bg-[var(--color-navy)]">
       <TireTrack />
-      <SectionWatermark />
       <div className="relative z-10 mx-auto max-w-[1280px] px-6 py-16 md:px-8">
         <header className="mb-8 text-center">
           <h2 className="font-condensed text-[clamp(28px,4vw,40px)] font-black uppercase leading-[1.1] text-white">

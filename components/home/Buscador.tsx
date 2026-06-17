@@ -202,7 +202,7 @@ function SearchButton({ onClick }: { onClick: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="mt-4 inline-flex h-[44px] items-center gap-2 rounded-[4px] bg-orange px-6 text-[12px] font-extrabold uppercase tracking-[0.07em] text-white transition-colors duration-150 hover:bg-[var(--color-orange-hover)]"
+      className="mt-4 inline-flex h-[44px] w-full items-center justify-center gap-2 rounded-[4px] bg-orange px-6 text-[12px] font-extrabold uppercase tracking-[0.07em] text-white transition-colors duration-150 hover:bg-[var(--color-orange-hover)] md:w-auto md:justify-start"
     >
       <SearchIcon />
       Buscar neumáticos
