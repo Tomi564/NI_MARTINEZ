@@ -14,15 +14,15 @@ export default function MarcaLogoBox({ src, nombre, className = "" }: MarcaLogoB
 
   return (
     <div
-      className={`flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-[6px] bg-gray-bg p-2 ${className}`}
+      className={`relative flex h-[72px] w-[72px] shrink-0 items-center justify-center overflow-hidden rounded-[6px] bg-gray-bg ${className}`}
     >
       {!imgError ? (
         <Image
           src={src}
           alt={`Logo ${nombre}`}
-          width={56}
-          height={56}
-          className="h-full w-full object-contain"
+          fill
+          sizes="72px"
+          className="object-contain p-1"
           onError={() => setImgError(true)}
         />
       ) : (

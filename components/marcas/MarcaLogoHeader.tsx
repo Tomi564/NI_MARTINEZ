@@ -8,22 +8,16 @@ type MarcaLogoHeaderProps = {
   slug: string;
 };
 
+const BOX_CLASS =
+  "relative mb-4 h-[88px] w-[176px] overflow-hidden rounded-lg bg-white md:h-[96px] md:w-[192px]";
+
 export default function MarcaLogoHeader({ nombre, slug }: MarcaLogoHeaderProps) {
   const [imgError, setImgError] = useState(false);
 
   if (imgError) {
     return (
-      <div
-        className="mb-4 flex items-center justify-center"
-        style={{
-          width: 140,
-          height: 70,
-          background: "rgba(255,255,255,0.1)",
-          borderRadius: 8,
-          padding: 12,
-        }}
-      >
-        <span className="font-condensed text-[28px] font-black text-white">
+      <div className={`${BOX_CLASS} flex items-center justify-center`}>
+        <span className="font-condensed text-[28px] font-black text-[var(--color-navy)]">
           {nombre.charAt(0)}
         </span>
       </div>
@@ -31,23 +25,13 @@ export default function MarcaLogoHeader({ nombre, slug }: MarcaLogoHeaderProps) 
   }
 
   return (
-    <div
-      className="mb-4 flex items-center justify-center"
-      style={{
-        width: 140,
-        height: 70,
-        background: "rgba(255,255,255,0.1)",
-        borderRadius: 8,
-        padding: 12,
-      }}
-    >
+    <div className={BOX_CLASS}>
       <Image
         src={`/images/marcas/${slug}.png`}
         alt={`Logo ${nombre}`}
-        width={116}
-        height={46}
-        className="object-contain"
-        style={{ filter: "brightness(0) invert(1)" }}
+        fill
+        sizes="(max-width: 768px) 176px, 192px"
+        className="object-contain p-1"
         onError={() => setImgError(true)}
       />
     </div>

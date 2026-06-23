@@ -58,7 +58,7 @@ export default function MarcasPage() {
                         href={`/marcas/${marca.slug}`}
                         className="inline-flex items-center gap-1 rounded-[3px] border border-navy bg-navy px-4 py-2 text-[11px] font-bold uppercase tracking-[0.06em] text-white transition-colors duration-150 hover:border-orange hover:bg-orange"
                       >
-                        Ver marca completa →
+                        Ver marca →
                       </Link>
                     </div>
                   </div>

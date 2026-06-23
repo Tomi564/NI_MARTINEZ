@@ -9,12 +9,12 @@ type ConfianzaItem = { titulo: string; texto: string; icon: ReactNode };
 const items: ConfianzaItem[] = [
   {
     titulo: "Empresa con trayectoria",
-    texto: "Detrás de esta web está Martínez Neumáticos, con 4 sucursales y más de 15 años en el rubro automotriz.",
+    texto: "Somos una empresa salteña con más de 30 años de trayectoria en el rubro automotor y el mercado de neumáticos. Contamos con cuatro sucursales distribuidas en Salta y Jujuy en las que brindamos servicios de alineación, balanceo, tren delantero y frenos.",
     icon: <StoreIcon />,
   },
   {
-    titulo: "Vendedor Platinum en MELI",
-    texto: "+5000 ventas concretadas y más de 4.8 estrellas. Comprá con total confianza.",
+    titulo: "Vendedor Platinum en Mercado Libre",
+    texto: "+5000 ventas concretadas y más de 4.8 estrellas para que puedas comprar con confianza y seguridad.",
     icon: <StarIcon />,
   },
   {

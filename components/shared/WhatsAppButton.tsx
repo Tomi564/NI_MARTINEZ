@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const WHATSAPP_URL = "https://wa.me/5493874000000";
+const WHATSAPP_URL = "https://wa.me/5493874623496";
 
 export default function WhatsAppButton() {
   const [show, setShow] = useState(false);

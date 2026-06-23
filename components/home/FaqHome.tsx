@@ -11,34 +11,17 @@ type FaqItem = {
 
 const faqs: FaqItem[] = [
   {
-    pregunta: "¿Qué medida de neumático necesito?",
+    pregunta: "¿Hacen instalación?",
     respuesta:
-      "La medida está impresa en el flanco del neumático actual de tu vehículo. Ejemplo: 185/65 R15. También podés encontrarla en el manual del auto o en la etiqueta del pilar de la puerta del conductor.",
+      "Sí, hacemos instalación en Salta y Jujuy en las siguientes ubicaciones:\n• Av. Chile 1301, Salta\n• Av. Sarmiento 275, Salta\n• Las Heras 1245, Salta\n• San Antonio 615, Jujuy\nSi estás en otra ciudad, cualquier gomería cercana y de confianza puede hacerlo.",
   },
   {
-    pregunta: "¿Los neumáticos vienen montados?",
-    respuesta:
-      "No. Vendemos únicamente la cubierta (el neumático sin montar). Una vez que lo recibís en tu domicilio, tenés que llevarlo a una sucursal de Martínez Neumáticos (si estás en Salta o Jujuy) o a cualquier gomería de confianza para el montaje y balanceo, que generalmente cuesta entre $3.000 y $8.000 por unidad según la zona.",
+    pregunta: "¿Los precios incluyen IVA?",
+    respuesta: "Sí, todos los precios publicados son finales y con IVA incluido.",
   },
   {
-    pregunta: "¿Cómo se realiza el pago?",
-    respuesta:
-      "El pago se realiza a través de Mercado Libre, donde podés pagar con tarjeta de crédito en hasta 12 cuotas sin interés, tarjeta de débito, transferencia bancaria o saldo de Mercado Pago.",
-  },
-  {
-    pregunta: "¿Cuánto tarda el envío?",
-    respuesta:
-      "El envío tarda entre 24 y 72hs hábiles dependiendo de tu zona. AMBA y GBA reciben en 24-48hs. El interior del país puede tardar hasta 72hs. Zonas remotas entre 5 y 7 días hábiles. El envío es siempre gratis.",
-  },
-  {
-    pregunta: "¿Puedo devolver un neumático?",
-    respuesta:
-      "Sí. Si el producto tiene un defecto de fábrica o te equivocaste de medida, podés solicitar el cambio dentro de los 30 días desde la recepción. El neumático debe estar sin uso y en su embalaje original. El costo del envío de devolución está a nuestro cargo.",
-  },
-  {
-    pregunta: "¿Son neumáticos originales?",
-    respuesta:
-      "Sí, todos nuestros neumáticos son 100% originales con DOT visible y verificable. Somos distribuidores oficiales de las marcas que comercializamos. Detrás de esta tienda está Martínez Neumáticos, empresa con más de 15 años en el rubro.",
+    pregunta: "¿Puedo comprar desde cualquier lugar del país?",
+    respuesta: "Sí, realizamos envíos a todo el país.",
   },
 ];
 

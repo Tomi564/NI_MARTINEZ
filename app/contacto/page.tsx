@@ -23,15 +23,15 @@ const FAQs: { q: string; a: string }[] = [
   },
   {
     q: "¿Hacen instalación?",
-    a: "No realizamos instalación. Solo somos venta y distribución online. Si estás en Salta o Jujuy, podés acercarte a cualquiera de las sucursales de Martínez Neumáticos para el montaje y balanceo. Si estás en otra provincia, cualquier gomería de confianza cerca tuyo puede hacerlo.",
+    a: "Sí, hacemos instalación en Salta y Jujuy en las siguientes ubicaciones:\n• Av. Chile 1301, Salta\n• Av. Sarmiento 275, Salta\n• Las Heras 1245, Salta\n• San Antonio 615, Jujuy\nSi estás en otra ciudad, cualquier gomería cercana y de confianza puede hacerlo.",
   },
   {
     q: "¿Los precios incluyen IVA?",
-    a: "Sí, todos los precios mostrados son finales con IVA incluido.",
+    a: "Sí, todos los precios publicados son finales y con IVA incluido.",
   },
   {
-    q: "¿Puedo comprar para todo el país?",
-    a: "Sí, enviamos a todo Argentina sin costo adicional.",
+    q: "¿Puedo comprar desde cualquier lugar del país?",
+    a: "Sí, realizamos envíos a todo el país.",
   },
 ];
 

@@ -60,10 +60,10 @@ export default function Hero() {
       <AnimatePresence mode="wait">
         <motion.div
           key={activeSlide.id}
-          initial={{ opacity: 0 }}
+          initial={activeIndex === 0 ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.35 }}
           className="relative w-full
                      [aspect-ratio:4/3]
                      md:[aspect-ratio:768/360]

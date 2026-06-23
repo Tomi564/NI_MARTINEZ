@@ -5,7 +5,6 @@ import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import PromoBand from "@/components/layout/PromoBand";
-import PageTransition from "@/components/shared/PageTransition";
 import ScrollProgress from "@/components/shared/ScrollProgress";
 import PromoPopup from "@/components/shared/PromoPopup";
 import PromoToast from "@/components/shared/PromoToast";
@@ -69,9 +68,7 @@ export default function RootLayout({
             <Navbar />
           </Suspense>
         </header>
-        <main className="w-full">
-          <PageTransition>{children}</PageTransition>
-        </main>
+        <main className="w-full">{children}</main>
         <WhatsAppButton />
         <PromoPopup />
         <PromoToast />
