@@ -1,22 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ProductGrid from "@/components/catalogo/ProductGrid";
 import BuscadorCompacto from "@/components/neumaticos/BuscadorCompacto";
 import MedidaDiagrama from "@/components/neumaticos/MedidaDiagrama";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { autosPorMedida, getTextoAutosPorMedida } from "@/lib/autos-por-medida";
-import { productosMock } from "@/lib/mockProductos";
 import {
   getMedidasRelacionadas,
   isValidMedidaSlug,
   medidaToSlug,
   MEDIDAS_POPULARES_SLUGS,
   parseMedida,
-  productoMatchesMedida,
 } from "@/lib/medidas";
 import { getSiteUrl } from "@/lib/site";
-import type { ProductoMock } from "@/lib/types";
 
 type NeumaticosMedidaPageProps = {
   params: { medida: string };
@@ -52,35 +48,12 @@ export async function generateMetadata({ params }: NeumaticosMedidaPageProps): P
   };
 }
 
-function filterProductosPorMedida(ancho: string, perfil: string, rodado: string): ProductoMock[] {
-  return productosMock.filter((p) => productoMatchesMedida(p.medida, ancho, perfil, rodado));
-}
-
-function getProductosRelacionados(ancho: string, perfil: string, rodado: string): ProductoMock[] {
-  const rodadoNum = Number(rodado);
-  const perfilNum = Number(perfil);
-
-  return productosMock
-    .filter((p) => !productoMatchesMedida(p.medida, ancho, perfil, rodado))
-    .filter((p) => {
-      const match = p.medida.match(/(\d+)\/(\d+)\s+R(\d+)/);
-      if (!match) return false;
-      const pPerfil = Number(match[2]);
-      const pRodado = Number(match[3]);
-      return pRodado === rodadoNum || Math.abs(pPerfil - perfilNum) <= 10;
-    })
-    .slice(0, 4);
-}
-
 export default function NeumaticosMedidaPage({ params }: NeumaticosMedidaPageProps) {
   if (!isValidMedidaSlug(params.medida)) {
     notFound();
   }
 
   const { ancho, perfil, rodado, display } = parseMedida(params.medida);
-  const productos = filterProductosPorMedida(ancho, perfil, rodado);
-  const productosRelacionados = getProductosRelacionados(ancho, perfil, rodado);
-  const marcas = [...new Set(productos.map((p) => p.marca))];
   const medidasRelacionadas = getMedidasRelacionadas(params.medida);
   const textoAutos = getTextoAutosPorMedida(display, rodado);
   const tieneAutosEspecificos = Boolean(autosPorMedida[display]);
@@ -110,19 +83,6 @@ export default function NeumaticosMedidaPage({ params }: NeumaticosMedidaPagePro
             Encontrá los mejores neumáticos {display} con envío a todo Argentina. Stock disponible de
             las principales marcas importadas.
           </p>
-
-          {marcas.length > 0 ? (
-            <div className="mt-5 flex flex-wrap gap-2">
-              {marcas.map((marca) => (
-                <span
-                  key={marca}
-                  className="rounded-[4px] border border-[var(--color-navy-border)] bg-[var(--color-navy-surface)] px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.06em] text-white"
-                >
-                  {marca}
-                </span>
-              ))}
-            </div>
-          ) : null}
         </div>
       </section>
 
@@ -178,55 +138,14 @@ export default function NeumaticosMedidaPage({ params }: NeumaticosMedidaPagePro
         </div>
       </section>
 
-      {/* Sección 3 — Productos */}
-      <section className="w-full bg-white">
-        <div className="mx-auto max-w-[1280px] px-5 py-10 md:px-8 md:py-14">
-          <SectionTitle
-            title={`Neumáticos ${display} `}
-            highlight="disponibles"
-            linkText="Ver catálogo"
-            linkHref="/catalogo"
-          />
-
-          <div className="mt-6">
-            {productos.length > 0 ? (
-              <ProductGrid productos={productos} />
-            ) : (
-              <div className="space-y-8">
-                <div>
-                  <div className="rounded-[6px] border border-gray-border bg-gray-bg p-8 text-center">
-                    <p className="font-condensed text-[18px] font-black uppercase text-text-primary">
-                      Sin stock para {display} en este momento
-                    </p>
-                    <p className="mt-2 text-[13px] text-text-secondary">
-                      Probá otra medida o consultanos por WhatsApp para verificar disponibilidad.
-                    </p>
-                  </div>
-                  <div className="rounded-[6px] border border-gray-border bg-navy p-6 md:p-8">
-                    <p className="mb-4 text-[12px] font-bold uppercase tracking-[0.08em] text-[var(--color-text-on-dark)]">
-                      Buscar otra medida
-                    </p>
-                    <BuscadorCompacto
-                      defaultAncho={ancho}
-                      defaultPerfil={perfil}
-                      defaultRodado={rodado}
-                    />
-                  </div>
-                </div>
-
-                {productosRelacionados.length > 0 ? (
-                  <div>
-                    <h3 className="mb-4 font-condensed text-[18px] font-black uppercase text-text-primary">
-                      Productos relacionados
-                    </h3>
-                    <ProductGrid productos={productosRelacionados} />
-                  </div>
-                ) : null}
-              </div>
-            )}
-          </div>
+      {/* Sección 3 — Productos (ocultos mientras catálogo en próximamente) */}
+      <div className="w-full bg-[var(--color-gray-bg)] py-12">
+        <div className="mx-auto max-w-[1280px] px-6 text-center md:px-8">
+          <p className="text-[13px] italic text-[var(--color-text-secondary)]">
+            Los productos para esta medida estarán disponibles próximamente.
+          </p>
         </div>
-      </section>
+      </div>
 
       {/* Sección 4 — Medidas relacionadas */}
       <section className="w-full bg-gray-bg">

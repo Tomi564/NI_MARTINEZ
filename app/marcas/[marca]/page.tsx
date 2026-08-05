@@ -3,12 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import MarcaLogoHeader from "@/components/marcas/MarcaLogoHeader";
 import OtraMarcaCard from "@/components/marcas/OtraMarcaCard";
-import ProductGrid from "@/components/catalogo/ProductGrid";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { marcasData } from "@/lib/marcas-data";
 import {
-  countProductosPorMarca,
-  filterProductosPorMarca,
   getBanderaPais,
   getEspecialidadDescripcion,
   getMarcaBySlug,
@@ -58,8 +55,6 @@ export default function MarcaPage({ params }: MarcaPageProps) {
     notFound();
   }
 
-  const productos = filterProductosPorMarca(marca.nombre);
-  const cantidadProductos = countProductosPorMarca(marca.nombre);
   const medidas = getMedidasParaMarca(marca.nombre);
   const otrasMarcas = getOtrasMarcasPopulares(marca.slug);
   const bandera = getBanderaPais(marca.paisOrigen);
@@ -106,10 +101,7 @@ export default function MarcaPage({ params }: MarcaPageProps) {
             <div className="grid w-full max-w-[320px] grid-cols-2 gap-2 sm:max-w-none lg:w-[320px]">
               <StatCard label="Origen" value={`${bandera} ${marca.paisOrigen}`} />
               <StatCard label="Fundación" value={marca.fundacion} />
-              <StatCard
-                label="En catálogo"
-                value={cantidadProductos > 0 ? `${cantidadProductos} productos` : "Consultar stock"}
-              />
+              <StatCard label="En catálogo" value="Próximamente" />
               <StatCard label="Envío" value="🚚 Gratis a todo el país" />
             </div>
           </div>
@@ -159,34 +151,14 @@ export default function MarcaPage({ params }: MarcaPageProps) {
         </div>
       </section>
 
-      {/* Sección 3 — Productos */}
-      <section className="w-full bg-gray-bg pb-10 md:pb-14">
-        <div className="mx-auto max-w-[1280px] px-5 md:px-8">
-          <SectionTitle
-            title="Neumáticos "
-            highlight={marca.nombre}
-            linkText="Ver todos"
-            linkHref={`/catalogo?marca=${marca.slug}`}
-          />
-          <div className="mt-6">
-            {productos.length > 0 ? (
-              <ProductGrid productos={productos} />
-            ) : (
-              <div className="rounded-[6px] border border-gray-border bg-white p-10 text-center">
-                <p className="font-condensed text-[18px] font-black uppercase text-text-primary">
-                  Próximamente disponible. Consultá disponibilidad.
-                </p>
-                <Link
-                  href="/catalogo"
-                  className="mt-4 inline-block rounded-[4px] bg-orange px-6 py-3 text-[12px] font-bold uppercase tracking-[0.07em] text-white transition-colors hover:bg-[var(--color-orange-hover)]"
-                >
-                  Ver catálogo completo
-                </Link>
-              </div>
-            )}
-          </div>
+      {/* Sección 3 — Productos (ocultos mientras catálogo en próximamente) */}
+      <div className="w-full bg-[var(--color-gray-bg)] py-12">
+        <div className="mx-auto max-w-[1280px] px-6 text-center md:px-8">
+          <p className="text-[13px] italic text-[var(--color-text-secondary)]">
+            Los productos de esta marca estarán disponibles próximamente.
+          </p>
         </div>
-      </section>
+      </div>
 
       {/* Sección 4 — Medidas */}
       <section className="w-full bg-white">
@@ -216,7 +188,7 @@ export default function MarcaPage({ params }: MarcaPageProps) {
                 key={otra.slug}
                 slug={otra.slug}
                 nombre={otra.nombre}
-                productos={countProductosPorMarca(otra.nombre)}
+                productos={0}
               />
             ))}
           </div>
